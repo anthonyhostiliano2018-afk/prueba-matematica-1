@@ -1,0 +1,2057 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prueba de Matemática I: 20 a 50 preguntas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600;700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFCFF;--grid:#E3EAF5;--surface:#FFFFFF;--ink:#1A2233;--muted:#55607A;--line:#CBD5E5;
+  --blue:#2440B0;--blue-soft:#E9EEFC;--on-blue:#FFFFFF;--green:#256B33;--green-soft:#E3F2E3;
+  --red:#BF3328;--red-soft:#FCE8E5;--hl-a:rgba(255,226,77,.72);--focus:#2440B0;
+  --sheet:#FFFFFF;--sheet-grid:#DCE5F2;--pen-1:#2440B0;--pen-2:#2B303B;--pen-3:#C8102E;
+  --serif:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  --sans:"Atkinson Hyperlegible","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --hand:"Caveat","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#152B26;--grid:#1B3530;--surface:#1A342E;--ink:#EAF0E8;--muted:#A9BCB2;--line:#2E4D45;
+    --blue:#A8BEFF;--blue-soft:#21394A;--on-blue:#0F1E33;--green:#93D88A;--green-soft:#1D4330;
+    --red:#FF968A;--red-soft:#4A2724;--hl-a:rgba(242,214,96,.3);--focus:#F2D660;color-scheme:dark;
+    --sheet:#17302A;--sheet-grid:#24453D;--pen-1:#A8BEFF;--pen-2:#EEF2EA;--pen-3:#FF8A80;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#152B26;--grid:#1B3530;--surface:#1A342E;--ink:#EAF0E8;--muted:#A9BCB2;--line:#2E4D45;
+  --blue:#A8BEFF;--blue-soft:#21394A;--on-blue:#0F1E33;--green:#93D88A;--green-soft:#1D4330;
+  --red:#FF968A;--red-soft:#4A2724;--hl-a:rgba(242,214,96,.3);--focus:#F2D660;color-scheme:dark;
+    --sheet:#17302A;--sheet-grid:#24453D;--pen-1:#A8BEFF;--pen-2:#EEF2EA;--pen-3:#FF8A80;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+[hidden]{display:none!important}
+body{margin:0;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--focus);outline-offset:2px}
+.wrap{max-width:44rem;margin:0 auto;padding:0 1.1rem}
+
+/* cabecera y pestañas */
+.mast{padding-top:1.4rem}
+.mast h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.75rem,6.2vw,2.35rem);line-height:1.1;margin:0;letter-spacing:-.01em}
+.mast .sub{margin:.45rem 0 0;color:var(--muted);max-width:34rem}
+.tabs{display:flex;gap:.25rem;margin-top:1.1rem;border-bottom:1.5px solid var(--line);overflow-x:auto}
+.tab{appearance:none;background:none;border:0;padding:.7rem .85rem .75rem;font-weight:700;color:var(--muted);position:relative;cursor:pointer;white-space:nowrap}
+.tab:first-child{padding-left:0}
+.tab[aria-selected="true"]{color:var(--ink)}
+.tab[aria-selected="true"]::after{content:"";position:absolute;left:.85rem;right:.85rem;bottom:-1.5px;height:3px;border-radius:3px;background:var(--blue)}
+.tab:first-child[aria-selected="true"]::after{left:0}
+.intro p{margin:1.1rem 0 0;max-width:36rem}
+
+/* inicio de práctica */
+.grupo{margin-top:1.6rem}
+.g-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+.g-head h2,.avance h2,.resul h2,.f-u{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.25;margin:0}
+.g-sub{margin:.15rem 0 .75rem;color:var(--muted);font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{appearance:none;display:inline-flex;align-items:center;gap:.55rem;padding:.55rem .85rem .55rem .65rem;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:2.75rem;text-align:left}
+.chip .box{flex:none;width:1.15rem;height:1.15rem;border-radius:4px;border:1.5px solid var(--muted);display:grid;place-items:center}
+.chip .box svg{width:.85rem;height:.85rem;opacity:0}
+.chip[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.chip[aria-pressed="true"] .box{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+.chip[aria-pressed="true"] .box svg{opacity:1}
+.chip .n{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.chip:disabled{opacity:.45;cursor:not-allowed}
+.ajustes{margin-top:1.6rem;border-top:1px solid var(--line)}
+.fila,.sw{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.sw{cursor:pointer}
+.fila b,.sw b{display:block}
+.fila small,.sw small{display:block;color:var(--muted);font-size:.88rem;margin-top:.1rem}
+.sw input{appearance:none;-webkit-appearance:none;margin:0;flex:none;width:2.9rem;height:1.7rem;border-radius:999px;background:var(--line);position:relative;cursor:pointer;transition:background .15s}
+.sw input::after{content:"";position:absolute;top:.2rem;left:.2rem;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--surface);box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .15s}
+.sw input:checked{background:var(--blue)}
+.sw input:checked::after{transform:translateX(1.2rem)}
+.seg{display:inline-flex;flex:none;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{appearance:none;border:0;background:var(--surface);padding:.45rem .7rem;font-weight:700;cursor:pointer;min-width:2.9rem;min-height:2.5rem}
+.seg button+button{border-left:1.5px solid var(--line)}
+.seg button[aria-checked="true"]{background:var(--blue);color:var(--on-blue)}
+.avance{margin-top:1.6rem}
+.avance p{margin:.35rem 0 .8rem}
+.avance-acc{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center}
+
+/* botones */
+.btn{appearance:none;border:1.5px solid transparent;border-radius:12px;padding:.8rem 1.1rem;font-weight:700;cursor:pointer;min-height:3rem;line-height:1.2}
+.btn-pri{background:var(--blue);color:var(--on-blue)}
+.btn-sec{background:var(--surface);color:var(--blue);border-color:var(--blue)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-sm{min-height:2.4rem;padding:.45rem .8rem;font-size:.92rem}
+.link{appearance:none;background:none;border:0;padding:.35rem 0;color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;cursor:pointer}
+.abar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--paper);border-top:1.5px solid var(--line);padding:.7rem 0 calc(.7rem + env(safe-area-inset-bottom,0px))}
+.abar .wrap{display:flex;gap:.6rem}
+.abar .btn{flex:1}
+.abar .btn-sec{flex:0 1 auto}
+body.con-abar{padding-bottom:5.5rem}
+
+/* barra de la ronda */
+.qbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:var(--paper);border-bottom:1.5px solid var(--line)}
+.qbar-in{display:flex;align-items:center;gap:.9rem;min-height:3.2rem}
+.qpos{font-weight:700;flex:1}
+.qscore{display:flex;gap:.75rem;font-weight:700;font-variant-numeric:tabular-nums}
+.qscore span{display:inline-flex;align-items:center;gap:.2rem}
+.qscore svg{width:1rem;height:1rem}
+.c-ok{color:var(--green)}.c-bad{color:var(--red)}
+.prog{height:3px}
+.prog i{display:block;height:100%;background:var(--blue);transition:width .3s ease}
+body.modo-quiz #mast,body.modo-quiz .pie{display:none}
+
+/* pregunta */
+.preg{padding-top:1.2rem}
+.qmeta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:0;color:var(--muted);font-size:.92rem}
+.tag{display:inline-block;padding:.08rem .5rem;border-radius:6px;border:1.5px solid var(--blue);color:var(--blue);font-weight:700;font-size:.8rem}
+.enun{font-family:var(--serif);font-size:1.13rem;line-height:1.62;margin:.55rem 0 1.2rem}
+.enun .num{font-weight:600}
+.opts{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.opt{width:100%;display:flex;align-items:center;gap:.75rem;text-align:left;padding:.75rem .85rem;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;cursor:pointer;min-height:3.3rem;transition:border-color .12s,background-color .12s}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt .let{flex:none;font-weight:700;color:var(--muted);width:1.5rem}
+.opt .txt{flex:1;min-width:0;font-family:var(--serif);font-size:1.06rem;line-height:1.45}
+.opt .mark{flex:none;width:1.7rem;height:1.7rem}
+.opt .mark svg{width:100%;height:100%;display:block}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--green);background:var(--green-soft)}
+.opt.ok .let,.opt.ok .mark{color:var(--green)}
+.opt.bad{border-color:var(--red);background:var(--red-soft)}
+.opt.bad .let,.opt.bad .mark{color:var(--red)}
+.opt.dim{opacity:.55}
+.fb{margin:1.3rem 0 .6rem;font-weight:700;font-size:1.05rem}
+.fb.ok{color:var(--green)}.fb.bad{color:var(--red)}
+.sol{border-left:3px solid var(--blue);padding:.1rem 0 .1rem 1rem;font-family:var(--serif);font-size:1.04rem;line-height:1.62}
+.sol h3{margin:0 0 .3rem;font-family:var(--sans);font-size:.95rem;color:var(--blue)}
+.sol ol,.sol ul{margin:.3rem 0;padding-left:1.25rem}
+.sol li{margin:.35rem 0}
+.sol p{margin:.6rem 0 0}
+.hl{background-image:linear-gradient(transparent 55%,var(--hl-a) 55%,var(--hl-a) 92%,transparent 92%);padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hl.blk{display:inline-block;background:var(--hl-a);border-radius:6px;padding:.1em .3em}
+
+/* notación matemática */
+.mx{display:inline-flex;position:relative;vertical-align:middle;padding:.12em .5em;margin:.12em .08em}
+.mx::before,.mx::after{content:"";position:absolute;top:0;bottom:0;width:.32em;border:1.5px solid currentColor}
+.mx::before{left:0;border-right:0}
+.mx::after{right:0;border-left:0}
+.mx.det::before,.mx.det::after{width:0;border-top:0;border-bottom:0}
+.mx-g{display:inline-grid;column-gap:.8em;text-align:center;font-variant-numeric:tabular-nums lining-nums;line-height:1.3;white-space:nowrap}
+.mx-g>span{padding:.04em 0}
+.mx-g>.aug{border-left:1.5px solid currentColor;padding-left:.55em;margin-left:-.25em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.86em;line-height:1.12;margin:0 .1em}
+.fr>span:first-child{border-bottom:1px solid currentColor;padding:0 .15em .06em}
+.fr>span:last-child{padding:.06em .15em 0}
+.sys{display:inline-flex;flex-direction:column;vertical-align:middle;border-left:1.5px solid currentColor;border-radius:8px 0 0 8px;padding:.1em 0 .1em .6em;margin:.2em 0;line-height:1.45;white-space:nowrap}
+.tw{overflow-x:auto;margin:.6rem 0;-webkit-overflow-scrolling:touch}
+table.io{border-collapse:collapse;font-family:var(--sans);font-size:.9rem;font-variant-numeric:tabular-nums;background:var(--surface)}
+table.io th,table.io td{border:1px solid var(--line);padding:.38rem .6rem;text-align:right;white-space:nowrap}
+table.io thead th{text-align:center;color:var(--muted);font-size:.82rem;font-weight:700}
+table.io tbody th{text-align:left;font-weight:700;white-space:normal;min-width:5.5em;line-height:1.25}
+@media (max-width:26rem){table.io{font-size:.84rem}table.io th,table.io td{padding:.34rem .42rem}}
+
+/* nota final */
+.resul{padding-top:1rem}
+.nota{position:relative;width:13rem;height:9rem;margin:.5rem auto .25rem;display:flex;align-items:center;justify-content:center;gap:.1rem;color:var(--blue)}
+.nota.desap{color:var(--red)}
+.nota svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.nota path{fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:trazo .9s .2s ease-out forwards}
+@keyframes trazo{to{stroke-dashoffset:0}}
+.nota .v{font-family:var(--hand);font-weight:700;font-size:5.2rem;line-height:1}
+.nota .d{font-family:var(--hand);font-weight:600;font-size:1.9rem;align-self:flex-end;margin-bottom:1.7rem}
+.res-msg{text-align:center;margin:.25rem auto 1.6rem;max-width:30rem}
+.bars{display:grid;gap:.85rem;margin:.75rem 0 1.4rem}
+.bar-row{display:grid;grid-template-columns:1fr auto;gap:.3rem .75rem;align-items:baseline}
+.bar-row .ft{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700}
+.bar{grid-column:1/-1;height:.45rem;border-radius:4px;background:var(--red-soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--green)}
+.repasa{margin:0 0 .7rem}
+
+/* desarrollo */
+.timer{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1rem;padding:.8rem 1rem;margin:1.1rem 0 1rem;border:1.5px dashed var(--line);border-radius:12px;background:var(--surface)}
+.timer .t{font-family:var(--serif);font-weight:600;font-size:1.7rem;font-variant-numeric:tabular-nums;min-width:4.6ch}
+.timer .t-l{color:var(--muted);font-size:.9rem;flex:1;min-width:9rem}
+.timer.low .t{color:var(--red)}
+.t-b{display:flex;align-items:center;gap:.9rem}
+.plist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.pitem{appearance:none;width:100%;display:grid;grid-template-columns:2rem 1fr auto;column-gap:.75rem;align-items:center;text-align:left;padding:.85rem 0;background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer}
+.pitem .pn{grid-row:1/3;font-family:var(--serif);font-weight:600;font-size:1.5rem;color:var(--blue);text-align:center}
+.pitem .pt{font-weight:700}
+.pitem .ps{grid-column:2;color:var(--muted);font-size:.9rem}
+.pitem .pill{grid-column:3;grid-row:1/3}
+.pill{font-size:.8rem;font-weight:700;padding:.2rem .55rem;border-radius:999px;border:1.5px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.ok{color:var(--green);border-color:var(--green)}
+.pill.rep{color:var(--red);border-color:var(--red)}
+.volver-fila{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:.9rem}
+.mini-t{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted)}
+.prob{padding-top:.4rem}
+.p-tit{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin:.35rem 0 0;line-height:1.25}
+.hint{color:var(--muted);margin:0 0 1rem}
+.steps{list-style:none;padding:0;margin:1rem 0;counter-reset:paso}
+.steps li{counter-increment:paso;position:relative;padding:.1rem 0 1rem 2.5rem;font-family:var(--serif);font-size:1.04rem;line-height:1.62}
+.steps li::before{content:counter(paso);position:absolute;left:0;top:.1rem;width:1.75rem;height:1.75rem;border-radius:50%;border:1.5px solid var(--blue);color:var(--blue);font-family:var(--sans);font-weight:700;font-size:.85rem;display:grid;place-items:center}
+.steps li::after{content:"";position:absolute;left:.85rem;top:2.05rem;bottom:.2rem;border-left:1.5px dotted var(--line)}
+.steps li:last-child::after{display:none}
+.steps h4{margin:0 0 .15rem;font-family:var(--sans);font-size:.98rem}
+.steps li.new{animation:aparece .28s ease-out}
+@keyframes aparece{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.final{border:1.5px solid var(--green);background:var(--green-soft);border-radius:12px;padding:.85rem 1rem;font-family:var(--serif);font-size:1.06rem;line-height:1.55}
+.auto{margin:1.25rem 0 .5rem}
+.auto p{margin:0 0 .5rem;font-weight:700}
+.auto-b{display:flex;flex-wrap:wrap;gap:.6rem}
+.auto-b .btn{flex:1;min-width:9rem}
+
+/* fórmulas */
+.f-u{margin:1.6rem 0 .25rem}
+details.fm{border-bottom:1px solid var(--line)}
+details.fm>summary{list-style:none;cursor:pointer;padding:.85rem 0;font-weight:700;font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+details.fm>summary::-webkit-details-marker{display:none}
+details.fm>summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--blue);font-weight:400}
+details.fm[open]>summary::after{content:"−"}
+.fm-b{padding:0 0 1rem}
+.fm-b ul{margin:0;padding-left:1.15rem;font-family:var(--serif);font-size:1.03rem;line-height:1.62}
+.fm-b li{margin:.3rem 0}
+
+/* hoja de trabajo */
+.hoja{margin:.25rem 0 1.25rem;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden;-webkit-user-select:none;user-select:none}
+.prob .hoja{margin:.5rem 0 1rem}
+.hoja-bar{display:flex;align-items:center;justify-content:space-between;gap:.15rem .5rem;flex-wrap:wrap;padding:.25rem .35rem}
+.hoja-tg{appearance:none;background:none;border:0;display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .5rem;border-radius:10px;font-weight:700;cursor:pointer;min-height:2.75rem}
+.hoja-tg svg{width:1.15rem;height:1.15rem;color:var(--blue);flex:none}
+.hoja-tg-t{color:var(--blue);font-size:.88rem;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
+.hoja-tools{display:flex;align-items:center;gap:.1rem;flex-wrap:wrap}
+.ht{appearance:none;border:0;background:none;min-width:2.75rem;height:2.75rem;padding:0 .45rem;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:.35rem;cursor:pointer;color:var(--ink)}
+.ht svg{width:1.3rem;height:1.3rem;display:block;flex:none}
+.ht.tinta i{display:block;width:1.15rem;height:1.15rem;border-radius:50%}
+.ht[aria-pressed="true"]{background:var(--blue-soft)}
+.ht.tinta[aria-pressed="true"] i{box-shadow:0 0 0 2.5px var(--blue-soft),0 0 0 4px var(--blue)}
+.ht.confirm{background:var(--red-soft);color:var(--red);font-weight:700;font-size:.85rem}
+.ht.confirm::after{content:"¿Borrar todo?"}
+.hoja-papel{border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);background:var(--sheet)}
+.hoja canvas{display:block;width:100%;height:20rem;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;cursor:crosshair;background-color:var(--sheet);background-image:linear-gradient(var(--sheet-grid) 1px,transparent 1px),linear-gradient(90deg,var(--sheet-grid) 1px,transparent 1px);background-size:24px 24px}
+.hoja-pie{display:flex;align-items:center;justify-content:space-between;gap:0 1rem;flex-wrap:wrap;padding:0 .85rem;font-size:.92rem}
+.hoja-pie .link{min-height:2.75rem}
+.hoja-pie .link:disabled{color:var(--muted);text-decoration:none;cursor:default}
+.hoja-dedo{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);cursor:pointer;min-height:2.75rem}
+.hoja-dedo input{width:1.15rem;height:1.15rem;margin:0;accent-color:var(--blue)}
+.hoja.cerrada .hoja-tools,.hoja.cerrada .hoja-papel,.hoja.cerrada .hoja-pie{display:none}
+body.dibujando{-webkit-user-select:none;user-select:none}
+
+.opt.sel{border-color:var(--blue);background:var(--blue-soft)}
+.opt.sel .let{color:var(--blue)}
+.btn-alerta{background:var(--red);color:var(--on-blue)}
+.qreloj{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted)}
+.fila{flex-wrap:wrap}
+.revision{margin-top:1.8rem}
+.revision h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0}
+.rev-filtro{margin:.7rem 0 .8rem}
+.rev{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.rev>li{border-bottom:1px solid var(--line)}
+.rev summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.2rem 1fr auto;gap:.6rem;align-items:center;padding:.7rem 0;min-height:2.9rem}
+.rev summary::-webkit-details-marker{display:none}
+.rev .rn{font-family:var(--serif);font-weight:600;color:var(--muted)}
+.rev .rt{font-weight:700}
+.rev .re{font-size:.8rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;border:1.5px solid currentColor;white-space:nowrap}
+.rev li.ok .re{color:var(--green)}.rev li.bad .re{color:var(--red)}.rev li.nada .re{color:var(--muted)}
+.rev .rbody{padding:0 0 1.1rem}
+.rev .rbody .enun{margin:.1rem 0 .8rem;font-size:1.05rem}
+.rev .ra{margin:.35rem 0;font-family:var(--serif)}
+.rev .sol{margin-top:.7rem}
+.rev.solo-err>li.ok{display:none}
+
+.pie{color:var(--muted);font-size:.85rem;padding:2.2rem 0 1.5rem}
+@media (min-width:48rem){.enun{font-size:1.2rem}.opts{gap:.7rem}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .nota path{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+<header id="mast" class="mast"><div class="wrap">
+  <h1>Prueba de Matemática I</h1>
+  <p class="sub">Elige 20, 30, 40 o 50 preguntas de las unidades I y II, y corrígelas al final como en el examen o al instante.</p>
+  <nav class="tabs" role="tablist" aria-label="Secciones del repaso">
+    <button type="button" class="tab" role="tab" data-act="tab" data-tab="practica" aria-controls="app" aria-selected="true">Práctica</button>
+    <button type="button" class="tab" role="tab" data-act="tab" data-tab="desarrollo" aria-controls="app" aria-selected="false">Desarrollo</button>
+    <button type="button" class="tab" role="tab" data-act="tab" data-tab="formulas" aria-controls="app" aria-selected="false">Fórmulas</button>
+  </nav>
+</div></header>
+<div id="qbar" class="qbar" hidden></div>
+<main id="app" class="wrap"></main>
+<footer class="pie"><div class="wrap">Preparado con las diapositivas de las sesiones 3, 4 y 5, la clase del 6/10 y el modelo de examen parcial de Matemática I (EGO104), FCA de la UNMSM.</div></footer>
+<div id="abar" class="abar" hidden></div>
+<script>
+/* ---------- notación matemática ---------- */
+function num(v){ if(typeof v!=='number') return String(v); return (v<0?'−':'')+String(Math.abs(v)); }
+function M(rows,o){
+  o=o||{}; const n=rows[0].length; let cells='';
+  rows.forEach(r=>r.forEach((v,j)=>{ cells+='<span'+(o.aug===j?' class="aug"':'')+'>'+num(v)+'</span>'; }));
+  const lab=(o.det?'determinante':'matriz')+' de '+rows.length+' por '+n+': '+rows.map(r=>r.map(num).join(', ')).join('; ');
+  return '<span class="mx'+(o.det?' det':'')+'" role="img" aria-label="'+lab+'"><span class="mx-g" aria-hidden="true" style="grid-template-columns:repeat('+n+',auto)">'+cells+'</span></span>';
+}
+function F(a,b){ return '<span class="fr"><span>'+a+'</span><span>'+b+'</span></span>'; }
+function SYS(l){ return '<span class="sys">'+l.map(x=>'<span>'+x+'</span>').join('')+'</span>'; }
+function R(t){ return '<span class="hl'+(t.indexOf('class="mx')>=0?' blk':'')+'">'+t+'</span>'; }
+function TBL(h,rows){
+  return '<div class="tw"><table class="io"><thead><tr>'+h.map(x=>'<th scope="col">'+x+'</th>').join('')+'</tr></thead><tbody>'+
+    rows.map(r=>'<tr>'+r.map((c,i)=>i===0?'<th scope="row">'+c+'</th>':'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
+}
+
+
+const BANCO1=(()=>{
+const TEMAS={
+  inec:{u:1,n:'Inecuaciones y presupuestos'},
+  matr:{u:1,n:'Matrices'},
+  det:{u:1,n:'Determinantes e inversa'},
+  sist:{u:1,n:'Sistemas: Cramer y Gauss'},
+  leon:{u:1,n:'Modelo de Leontief'},
+  recta:{u:2,n:'La recta'},
+  equi:{u:2,n:'Costo, ingreso y equilibrio'},
+  parab:{u:2,n:'La parábola'},
+  conic:{u:2,n:'Elipse e hipérbola'}
+};
+const UNIDADES={
+  1:{n:'Unidad I',d:'Números reales, matrices, determinantes, sistemas de ecuaciones y Leontief.'},
+  2:{n:'Unidad II',d:'Geometría analítica: recta, parábola, elipse e hipérbola.'}
+};
+
+const T_AS=TBL(['','Agro','Servicios','D. final','Total'],[['Agro',100,50,50,200],['Servicios',50,100,100,250],['Insumos primarios',50,100,'','']]);
+const A_AS=M([[0.5,0.2],[0.25,0.4]]);
+const INV_AS=M([[2.4,0.8],[1,2]]);
+
+const PREGUNTAS=[
+/* ===== UNIDAD I · Inecuaciones ===== */
+{id:'inec1',t:'inec',ex:true,
+ q:`Una empresa fabricará 5 000 unidades en total entre las plantas A y B. En A, el costo unitario por mano de obra y material es $4 y el costo fijo $20 000; en B es $4.80 por unidad y $25 000 fijos. Si el costo total de ambas plantas no debe superar $67 000, ¿cuál es el número mínimo de unidades que debe producir la planta A?`,
+ o:['2 500 unidades','2 000 unidades','3 000 unidades','Ninguno: el presupuesto alcanza con cualquier reparto'],a:0,
+ s:`<ol><li>Si A produce x unidades, B produce 5 000 − x.</li>
+<li>Costo total: (4x + 20 000) + [4.80(5 000 − x) + 25 000] = 4x + 20 000 + 24 000 − 4.8x + 25 000 = 69 000 − 0.8x.</li>
+<li>“No más de $67 000” se escribe con ≤: 69 000 − 0.8x ≤ 67 000 → −0.8x ≤ −2 000.</li>
+<li>Al dividir entre −0.8 (negativo) el sentido se invierte: x ≥ 2 500.</li></ol>
+<p>La planta A debe producir ${R('al menos 2 500 unidades')}. Comprueba: con x = 2 500 el costo es 69 000 − 2 000 = 67 000 ✓.</p>`},
+{id:'inec2',t:'inec',
+ q:`Al resolver un problema de presupuesto como el de las dos plantas obtienes x ≥ −4 000, donde x son las unidades que produce la planta A (de un total de 6 000). ¿Cuál es el número mínimo de unidades que debe producir A?`,
+ o:['0 unidades: el presupuesto se cumple con cualquier reparto','−4 000 unidades','4 000 unidades','El problema no tiene solución'],a:0,
+ s:`<ol><li>x cuenta unidades, así que también se cumple 0 ≤ x ≤ 6 000 (el dominio del problema).</li>
+<li>La solución x ≥ −4 000 ya incluye todos esos valores: ningún reparto se pasa del presupuesto.</li>
+<li>Manda la cota más exigente de las dos: x ≥ 0.</li></ol>
+<p>El mínimo es ${R('0 unidades')}. Una cantidad negativa nunca es respuesta: interseca siempre tu resultado con el dominio.</p>`},
+{id:'inec3',t:'inec',
+ q:`Resuelve la inecuación 3x − 7 ≤ 5x + 9.`,
+ o:['x ≥ −8, es decir [−8, ∞)','x ≤ −8, es decir (−∞, −8]','x ≥ 8, es decir [8, ∞)','x ≤ 8, es decir (−∞, 8]'],a:0,
+ s:`<ol><li>Agrupa x a un lado: 3x − 5x ≤ 9 + 7 → −2x ≤ 16.</li>
+<li>Divide entre −2 e invierte el sentido: x ≥ −8.</li></ol>
+<p>${R('CS = [−8, ∞)')}. El corchete indica que −8 sí está incluido. El error típico es no invertir “≤” al dividir entre un negativo.</p>`},
+{id:'inec4',t:'inec',
+ q:`Un emprendedor vende polos a S/ 25 cada uno. El costo variable es S/ 15 por polo y el costo fijo, S/ 3 000 al mes. ¿Cuántos polos debe vender como mínimo para ganar al menos S/ 2 000 al mes?`,
+ o:['500 polos','300 polos','200 polos','334 polos'],a:0,
+ s:`<ol><li>Utilidad: U = 25x − (15x + 3 000) = 10x − 3 000.</li>
+<li>“Al menos S/ 2 000”: 10x − 3 000 ≥ 2 000 → 10x ≥ 5 000 → x ≥ 500.</li></ol>
+<p>Debe vender ${R('al menos 500 polos')}. Con 300 está en equilibrio (gana S/ 0); 200 sale de olvidar el costo fijo.</p>`},
+{id:'inec5',t:'inec',
+ q:`Una MYPE tiene S/ 12 000 para publicidad este mes. Ya pagó un paquete fijo de S/ 2 000 y cada anuncio en radio cuesta S/ 400. ¿Cuántos anuncios puede contratar como máximo?`,
+ o:['25','30','35','20'],a:0,
+ s:`<ol><li>Gasto total: 2 000 + 400x, que no puede pasar de 12 000.</li>
+<li>2 000 + 400x ≤ 12 000 → 400x ≤ 10 000 → x ≤ 25.</li></ol>
+<p>Como máximo ${R('25 anuncios')}. El 30 aparece si se ignora el pago fijo.</p>`},
+{id:'inec6',t:'inec',
+ q:`¿Para qué valores de x se cumple x² − 5x + 6 &lt; 0?`,
+ o:['2 &lt; x &lt; 3','x &lt; 2 o x &gt; 3','−3 &lt; x &lt; −2','x &lt; −3 o x &gt; −2'],a:0,
+ s:`<ol><li>Factoriza: (x − 2)(x − 3) &lt; 0. Puntos críticos: x = 2 y x = 3.</li>
+<li>Prueba un valor de cada zona: x = 0 da 6 (positivo), x = 2.5 da −0.25 (negativo) y x = 4 da 2 (positivo).</li>
+<li>Piden “&lt; 0”: la zona negativa está entre las raíces.</li></ol>
+<p>${R('CS = (2, 3)')}, es decir 2 &lt; x &lt; 3.</p>`},
+{id:'inec7',t:'inec',
+ q:`Si a &lt; b y c &lt; 0, ¿cuál de estas afirmaciones es verdadera?`,
+ o:['ac &gt; bc','ac &lt; bc','a + c &gt; b + c',`${F('a','c')} &lt; ${F('b','c')}`],a:0,
+ s:`<ul><li>Multiplicar o dividir ambos lados por un negativo ${R('invierte el sentido')}: de a &lt; b se pasa a ac &gt; bc (y también a/c &gt; b/c).</li>
+<li>Sumar el mismo número no cambia el sentido: a + c &lt; b + c.</li></ul>
+<p>Ejemplo: 2 &lt; 5 y c = −1 → −2 &gt; −5 ✓.</p>`},
+
+/* ===== Matrices ===== */
+{id:'matr1',t:'matr',
+ q:`Dada A = ${M([[4,-1,0],[2,7,-3]])}, ¿cuál es su orden y cuánto vale a₂₃?`,
+ o:['2 × 3 y a₂₃ = −3','3 × 2 y a₂₃ = −3','2 × 3 y a₂₃ = 0','3 × 2 y a₂₃ = 7'],a:0,
+ s:`<ul><li>Orden m × n = filas × columnas: 2 filas y 3 columnas → 2 × 3.</li>
+<li>a<sub>ij</sub> está en la fila i y la columna j: a₂₃ es fila 2, columna 3 → ${R('−3')}.</li></ul>
+<p>Cuidado: a₁₃ = 0 y a₂₂ = 7.</p>`},
+{id:'matr2',t:'matr',
+ q:`Si A es de orden 2 × 3 y B es de orden 3 × 4, ¿qué puedes afirmar sobre AB y BA?`,
+ o:['AB existe y es 2 × 4; BA no existe','AB es 3 × 3 y BA es 4 × 2','AB y BA existen y son iguales','AB no existe porque A y B tienen distinto orden'],a:0,
+ s:`<ul><li>Regla: A(m×n) · B(n×p) = C(m×p). Las columnas de la primera deben coincidir con las filas de la segunda.</li>
+<li>AB: 2×<b>3</b> · <b>3</b>×4 → coinciden → ${R('AB es 2 × 4')}.</li>
+<li>BA: 3×<b>4</b> · <b>2</b>×3 → 4 ≠ 2 → BA no existe.</li></ul>`},
+{id:'matr3',t:'matr',
+ q:`Si A = ${M([[1,-2],[0,3]])} y B = ${M([[2,1],[-1,4]])}, calcula 2A − 3B.`,
+ o:[M([[-4,-7],[3,-6]]),M([[8,-1],[-3,18]]),M([[-4,-7],[-3,-6]]),M([[-1,-3],[1,-1]])],a:0,
+ s:`<ol><li>2A = ${M([[2,-4],[0,6]])} y 3B = ${M([[6,3],[-3,12]])}.</li>
+<li>Resta elemento a elemento: 2 − 6 = −4; −4 − 3 = −7; 0 − (−3) = 3; 6 − 12 = −6.</li></ol>
+<p>2A − 3B = ${R(M([[-4,-7],[3,-6]]))}. Ojo con 0 − (−3) = +3.</p>`},
+{id:'matr4',t:'matr',
+ q:`Si A = ${M([[2,1],[3,4]])} y B = ${M([[1,0],[2,5]])}, ¿cuánto es AB?`,
+ o:[M([[4,5],[11,20]]),M([[2,1],[19,22]]),M([[2,0],[6,20]]),M([[4,11],[5,20]])],a:0,
+ s:`<ol><li>Cada elemento es fila de A por columna de B: c₁₁ = 2·1 + 1·2 = 4; c₁₂ = 2·0 + 1·5 = 5.</li>
+<li>c₂₁ = 3·1 + 4·2 = 11; c₂₂ = 3·0 + 4·5 = 20.</li></ol>
+<p>AB = ${R(M([[4,5],[11,20]]))}. En cambio BA = ${M([[2,1],[19,22]])}: el producto de matrices no es conmutativo.</p>`},
+{id:'matr5',t:'matr',
+ q:`Una tienda tiene dos locales. La matriz Q da el stock (filas: local 1 y local 2; columnas: polos, jeans y casacas) y P da los precios en soles: Q = ${M([[10,5,8],[6,12,4]])}, P = ${M([[30],[80],[120]])}. ¿Cuál es el valor del inventario del local 2?`,
+ o:['S/ 1 620','S/ 1 660','S/ 3 280','S/ 2 040'],a:0,
+ s:`<ol><li>QP es (2×3)(3×1) = 2×1: cada fila da el valor de un local.</li>
+<li>Local 2: 6·30 + 12·80 + 4·120 = 180 + 960 + 480 = 1 620.</li>
+<li>Local 1: 10·30 + 5·80 + 8·120 = 300 + 400 + 960 = 1 660.</li></ol>
+<p>Local 2: ${R('S/ 1 620')}. El valor total del inventario es S/ 3 280.</p>`},
+{id:'matr6',t:'matr',ex:true,
+ q:`Dadas A = ${M([[2,1,0],[1,3,1],[0,1,2]])} y B = ${M([[1,0,2],[0,1,1],[1,1,0]])}, ¿cuál es la fila 2 del producto AB?`,
+ o:['(2, 4, 5)','(2, 1, 5)','(2, 3, 1)','(0, 3, 1)'],a:0,
+ s:`<ol><li>La fila 2 de AB sale de la fila 2 de A, (1, 3, 1), multiplicada por cada columna de B.</li>
+<li>Columna 1 (1, 0, 1): 1·1 + 3·0 + 1·1 = 2.</li>
+<li>Columna 2 (0, 1, 1): 1·0 + 3·1 + 1·1 = 4.</li>
+<li>Columna 3 (2, 1, 0): 1·2 + 3·1 + 1·0 = 5.</li></ol>
+<p>Fila 2: ${R('(2, 4, 5)')}. Completa: AB = ${M([[2,1,5],[2,4,5],[2,3,1]])}. La opción (0, 3, 1) es el error de multiplicar elemento por elemento.</p>`},
+
+/* ===== Determinantes ===== */
+{id:'det1',t:'det',
+ q:`Calcula el determinante de ${M([[2,0,1],[1,3,-1],[4,1,2]])}.`,
+ o:['3','23','−3','13'],a:0,
+ s:`<ol><li>Sarrus, diagonales que bajan (+): 2·3·2 + 0·(−1)·4 + 1·1·1 = 12 + 0 + 1 = 13.</li>
+<li>Diagonales que suben (−): 1·3·4 + 2·(−1)·1 + 0·1·2 = 12 − 2 + 0 = 10.</li>
+<li>|A| = 13 − 10 = 3.</li></ol>
+<p>${R('|A| = 3')}. Comprueba con cofactores por la fila 1: 2(6 + 1) − 0 + 1(1 − 12) = 14 − 11 = 3 ✓.</p>`},
+{id:'det2',t:'det',
+ q:`A es una matriz 3 × 3 con det(A) = 4. ¿Cuánto vale det(2A)?`,
+ o:['32','8','16','64'],a:0,
+ s:`<ul><li>Multiplicar toda la matriz por k multiplica cada una de sus n filas por k.</li>
+<li>Por eso |kA| = kⁿ|A|. Aquí: 2³ · 4 = 8 · 4 = 32.</li></ul>
+<p>${R('det(2A) = 32')}. Responder 8 es el error frecuente: eso pasaría si solo multiplicaras una fila por 2.</p>`},
+{id:'det3',t:'det',ex:true,
+ q:`A y B son matrices 3 × 3 con det(A) = 8 y det(B) = −3. ¿Cuánto valen det(AB) y det(BA)?`,
+ o:['Ambos valen −24','det(AB) = −24 y det(BA) = 24','Ambos valen 5','No se puede saber sin calcular AB'],a:0,
+ s:`<ul><li>Propiedad: |AB| = |A| · |B| = 8 · (−3) = −24.</li>
+<li>|BA| = |B| · |A| = −24 también: aunque AB ≠ BA, sus determinantes son iguales.</li></ul>
+<p>${R('det(AB) = det(BA) = −24')}. En el examen esta propiedad te sirve para comprobar tu producto AB.</p>`},
+{id:'det4',t:'det',
+ q:`¿Para qué valores de k la matriz ${M([['k',4],[2,'k − 2']])} no tiene inversa?`,
+ o:['k = 4 o k = −2','k = −4 o k = 2','Solo k = 2','Para ningún k: siempre tiene inversa'],a:0,
+ s:`<ol><li>Una matriz no tiene inversa cuando su determinante es 0.</li>
+<li>det = k(k − 2) − 4·2 = k² − 2k − 8.</li>
+<li>k² − 2k − 8 = 0 → (k − 4)(k + 2) = 0 → k = 4 o k = −2.</li></ol>
+<p>${R('k = 4 o k = −2')}: con esos valores la matriz es singular.</p>`},
+{id:'det5',t:'det',
+ q:`¿Cuál es la inversa de ${M([[2,1],[4,3]])}?`,
+ o:[M([[1.5,-0.5],[-2,1]]),M([[3,-1],[-4,2]]),M([[1,-0.5],[-2,1.5]]),M([[1.5,0.5],[2,1]])],a:0,
+ s:`<ol><li>det = 2·3 − 1·4 = 2 (≠ 0, sí tiene inversa).</li>
+<li>Intercambia la diagonal principal (2 ↔ 3) y cambia el signo de la secundaria: ${M([[3,-1],[-4,2]])}.</li>
+<li>Multiplica por 1/det = 1/2.</li></ol>
+<p>A⁻¹ = ${R(M([[1.5,-0.5],[-2,1]]))}. Verifica: A · A⁻¹ = ${M([[1,0],[0,1]])} ✓.</p>`},
+{id:'det6',t:'det',
+ q:`¿Cuál de estas afirmaciones sobre determinantes es <b>falsa</b>?`,
+ o:['Si intercambias dos filas, el determinante no cambia','Si una fila es múltiplo de otra, el determinante es 0','det(Aᵀ) = det(A)','Si a una fila le sumas k veces otra, el determinante no cambia'],a:0,
+ s:`<ul><li>Intercambiar dos filas ${R('cambia el signo')} del determinante: esa es la falsa.</li>
+<li>Filas proporcionales dan 0; transponer no cambia el valor; R<sub>i</sub> → R<sub>i</sub> + kR<sub>j</sub> tampoco (por eso sirve para triangular).</li></ul>
+<p>Otras: multiplicar una fila por k multiplica |A| por k; si A es triangular, |A| es el producto de su diagonal; |A⁻¹| = 1/|A|.</p>`},
+
+/* ===== Sistemas ===== */
+{id:'sist1',t:'sist',
+ q:`Un cliente paga S/ 12 por 2 sándwiches y 3 jugos, y un sándwich cuesta S/ 1 más que un jugo. Con 2x + 3y = 12 y x − y = 1, resuelve por Cramer. ¿Cuánto cuesta cada producto?`,
+ o:['Sándwich S/ 3 y jugo S/ 2','Sándwich S/ 2 y jugo S/ 3','Sándwich S/ 1.50 y jugo S/ 3','Sándwich S/ 2 y jugo S/ 1'],a:0,
+ s:`<ol><li>Δ = ${M([[2,3],[1,-1]],{det:1})} = 2(−1) − 3·1 = −5.</li>
+<li>Δx = ${M([[12,3],[1,-1]],{det:1})} = −12 − 3 = −15 → x = −15/−5 = 3.</li>
+<li>Δy = ${M([[2,12],[1,1]],{det:1})} = 2 − 12 = −10 → y = −10/−5 = 2.</li></ol>
+<p>${R('Sándwich S/ 3 y jugo S/ 2')}. Verifica: 2·3 + 3·2 = 12 ✓ y 3 − 2 = 1 ✓.</p>`},
+{id:'sist2',t:'sist',
+ q:`Resuelve por Cramer: ${SYS(['2x + y − z = 3','x − y + 2z = 7','3x + 2y + z = 16'])}`,
+ o:['x = 2, y = 3, z = 4','x = 1, y = 2, z = 3','x = 3, y = 2, z = 4','x = 2, y = 4, z = 3'],a:0,
+ s:`<ol><li>Δ = ${M([[2,1,-1],[1,-1,2],[3,2,1]],{det:1})} = (−2 + 6 − 2) − (3 + 8 + 1) = 2 − 12 = −10 ≠ 0.</li>
+<li>Reemplaza la columna de cada incógnita por (3, 7, 16): Δx = −20, Δy = −30, Δz = −40.</li>
+<li>x = −20/−10 = 2; y = −30/−10 = 3; z = −40/−10 = 4.</li></ol>
+<p>${R('CS = {(2; 3; 4)}')}. Verifica en la tercera ecuación: 6 + 6 + 4 = 16 ✓.</p>`},
+{id:'sist3',t:'sist',
+ q:`¿Cuál es la matriz aumentada de este sistema? ${SYS(['x + 2y = 5','3x − z = 1','y + 4z = −2'])}`,
+ o:[M([[1,2,0,5],[3,0,-1,1],[0,1,4,-2]],{aug:3}),M([[1,2,5],[3,-1,1],[1,4,-2]],{aug:2}),M([[1,2,0,5],[3,-1,0,1],[0,1,4,-2]],{aug:3}),M([[1,3,0,5],[2,0,1,1],[0,-1,4,-2]],{aug:3})],a:0,
+ s:`<ul><li>Cada columna es una incógnita, en orden x, y, z; si una incógnita no aparece, su coeficiente es 0.</li>
+<li>“3x − z = 1” no tiene y → fila (3, 0, −1 | 1). “y + 4z = −2” no tiene x → fila (0, 1, 4 | −2).</li>
+<li>Después de la barra van los términos independientes.</li></ul>
+<p>[A | B] = ${R(M([[1,2,0,5],[3,0,-1,1],[0,1,4,-2]],{aug:3}))}</p>`},
+{id:'sist4',t:'sist',
+ q:`¿Cuál de estas <b>no</b> es una operación elemental de fila válida en Gauss-Jordan?`,
+ o:['R₂ → 0·R₂','R₁ ↔ R₃',`R₂ → −${F(1,2)}R₂`,'R₃ → R₃ − 4R₁'],a:0,
+ s:`<ul><li>Las tres operaciones válidas: intercambiar filas (R<sub>i</sub> ↔ R<sub>j</sub>), multiplicar una fila por k ${R('≠ 0')} y sumar a una fila un múltiplo de otra (R<sub>i</sub> → R<sub>i</sub> + kR<sub>j</sub>).</li>
+<li>Multiplicar por 0 borra una ecuación: el sistema deja de ser equivalente.</li></ul>
+<p>Tampoco vale “sumar un mismo número a toda una fila”.</p>`},
+{id:'sist5',t:'sist',
+ q:`Al aplicar Gauss a un sistema de 3 ecuaciones llegas a ${M([[1,2,-1,4],[0,1,3,2],[0,0,0,5]],{aug:3})}. ¿Qué tipo de sistema es?`,
+ o:['Incompatible: no tiene solución','Compatible indeterminado: infinitas soluciones','Compatible determinado, con z = 5','Compatible determinado, con z = 0'],a:0,
+ s:`<ul><li>La fila 3 dice 0x + 0y + 0z = 5, es decir 0 = 5: contradicción.</li>
+<li>Por eso el sistema es ${R('incompatible')}.</li>
+<li>Si la última fila fuera 0 = 0, habría una variable libre: infinitas soluciones.</li></ul>
+<p>Con rangos: r(A) = 2 ≠ r(A|B) = 3.</p>`},
+{id:'sist6',t:'sist',ex:true,
+ q:`Una chocolatería de Ica arma tres tipos de cajas. La caja I lleva 1 chocoteja de pecana, 2 de maní y 1 de fruta; la II, 1 de pecana, 1 de maní y 2 de fruta; la III, 1 de pecana, 3 de maní y 2 de fruta. Hay exactamente 10 de pecana, 22 de maní y 18 de fruta. Usando Gauss, ¿cuántas cajas de cada tipo se arman usando todo?`,
+ o:['2 cajas I, 3 cajas II y 5 cajas III','3 cajas I, 2 cajas II y 5 cajas III','5 cajas I, 3 cajas II y 2 cajas III','2 cajas I, 5 cajas II y 3 cajas III'],a:0,
+ s:`<ol><li>Con x, y, z = cajas I, II y III: ${SYS(['x + y + z = 10','2x + y + 3z = 22','x + 2y + 2z = 18'])}</li>
+<li>Matriz aumentada: ${M([[1,1,1,10],[2,1,3,22],[1,2,2,18]],{aug:3})}</li>
+<li>R₂ → R₂ − 2R₁ y R₃ → R₃ − R₁: ${M([[1,1,1,10],[0,-1,1,2],[0,1,1,8]],{aug:3})}</li>
+<li>R₃ → R₃ + R₂: ${M([[1,1,1,10],[0,-1,1,2],[0,0,2,10]],{aug:3})}</li>
+<li>Sustitución regresiva: 2z = 10 → z = 5; −y + 5 = 2 → y = 3; x = 10 − 3 − 5 = 2.</li></ol>
+<p>${R('2 cajas I, 3 cajas II y 5 cajas III')}. Verifica el maní: 2·2 + 3 + 3·5 = 22 ✓.</p>`},
+{id:'sist7',t:'sist',ex:true,
+ q:`Con la solución de las chocotejas (2 cajas I, 3 cajas II y 5 cajas III), si cada caja se vende a S/ 12, S/ 15 y S/ 20 respectivamente, ¿cuál es el ingreso total?`,
+ o:['S/ 169','S/ 159','S/ 145','S/ 47'],a:0,
+ s:`<ul><li>Es un producto fila por columna: (12, 15, 20) · (2, 3, 5) = 12·2 + 15·3 + 20·5.</li>
+<li>= 24 + 45 + 100 = 169.</li></ul>
+<p>Ingreso total: ${R('S/ 169')}. Escribe siempre la unidad que pide el enunciado (soles, centavos, dólares).</p>`},
+{id:'sist8',t:'sist',
+ q:`¿Tiene solución única el sistema 2x + 4y = 10, 3x + 6y = 12?`,
+ o:['No: Δ = 0 y las ecuaciones se contradicen, así que no tiene solución','No: Δ = 0 y tiene infinitas soluciones','Sí: x = 5, y = 0','Sí, porque Δ = 24'],a:0,
+ s:`<ol><li>Δ = ${M([[2,4],[3,6]],{det:1})} = 12 − 12 = 0 → no hay solución única (Cramer no se puede aplicar).</li>
+<li>Para saber si son infinitas o ninguna: divide la primera entre 2 → x + 2y = 5; la segunda entre 3 → x + 2y = 4.</li>
+<li>x + 2y no puede valer 5 y 4 a la vez: son rectas paralelas.</li></ol>
+<p>El sistema es ${R('incompatible')}. (x = 5, y = 0 solo cumple la primera ecuación.)</p>`},
+
+/* ===== Leontief ===== */
+{id:'leon1',t:'leon',
+ q:`Con esta tabla insumo-producto (en millones de soles), ¿cuál es la matriz de coeficientes técnicos A? ${T_AS}`,
+ o:[A_AS,M([[0.5,0.25],[0.2,0.4]]),M([[0.4,0.2],[0.2,0.4]]),M([[2,5],[4,2.5]])],a:0,
+ s:`<ul><li>a<sub>ij</sub> = z<sub>ij</sub> / X<sub>j</sub>: cada <b>columna</b> se divide entre la producción total del sector que la encabeza.</li>
+<li>Columna Agro ÷ 200: 100/200 = 0.5 y 50/200 = 0.25.</li>
+<li>Columna Servicios ÷ 250: 50/250 = 0.2 y 100/250 = 0.4.</li></ul>
+<p>A = ${R(A_AS)}. Las columnas suman 0.75 y 0.6 (menos de 1 ✓). Dividir por filas da la transpuesta: es el error clásico.</p>`},
+{id:'leon2',t:'leon',
+ q:`En A = ${A_AS} (sector 1 = Agro, sector 2 = Servicios), ¿qué significa a₁₂ = 0.2?`,
+ o:['Por cada sol que produce Servicios, compra S/ 0.20 a Agro','Por cada sol que produce Agro, compra S/ 0.20 a Servicios','Agro destina el 20 % de su producción a la demanda final','Servicios usa el 20 % de su propia producción'],a:0,
+ s:`<ul><li>La fila indica quién vende y la columna quién compra.</li>
+<li>a₁₂: fila 1 (Agro vende), columna 2 (Servicios compra).</li></ul>
+<p>${R('Por cada sol que produce Servicios, le compra S/ 0.20 a Agro')}. En cambio a₂₁ = 0.25: por cada sol que produce Agro, le compra S/ 0.25 a Servicios.</p>`},
+{id:'leon3',t:'leon',
+ q:`Para A = ${A_AS}, ¿cuál es la inversa de Leontief (I − A)⁻¹?`,
+ o:[INV_AS,M([[2,0.8],[1,2.4]]),M([[2.4,-0.8],[-1,2]]),M([[0.6,0.2],[0.25,0.5]])],a:0,
+ s:`<ol><li>I − A = ${M([[0.5,-0.2],[-0.25,0.6]])}.</li>
+<li>det(I − A) = 0.5·0.6 − (−0.2)(−0.25) = 0.30 − 0.05 = 0.25.</li>
+<li>Intercambia la diagonal y cambia el signo de la secundaria: ${M([[0.6,0.2],[0.25,0.5]])}; luego multiplica por 1/0.25 = 4.</li></ol>
+<p>(I − A)⁻¹ = ${R(INV_AS)}.</p>`},
+{id:'leon4',t:'leon',
+ q:`Con (I − A)⁻¹ = ${INV_AS}, si la demanda final proyectada es D = (60, 120) para Agro y Servicios, ¿cuánto debe producir cada sector?`,
+ o:['Agro 240 y Servicios 300','Agro 300 y Servicios 240','Agro 216 y Servicios 348','Agro 114 y Servicios 183'],a:0,
+ s:`<ol><li>X = (I − A)⁻¹ D.</li>
+<li>X₁ = 2.4·60 + 0.8·120 = 144 + 96 = 240.</li>
+<li>X₂ = 1·60 + 2·120 = 60 + 240 = 300.</li></ol>
+<p>${R('X = (240, 300)')}. Verifica con X = AX + D: 0.5·240 + 0.2·300 + 60 = 240 ✓ y 0.25·240 + 0.4·300 + 120 = 300 ✓.</p>`},
+{id:'leon5',t:'leon',
+ q:`Si (I − A)⁻¹ = ${INV_AS} (columna 1 = Agro, columna 2 = Servicios), ¿qué sector tiene el mayor multiplicador de producción?`,
+ o:['Agro, con 3.4','Servicios, con 2.8','Agro, con 3.2','Servicios, con 3.0'],a:0,
+ s:`<ul><li>El multiplicador es la suma de cada <b>columna</b> de la inversa.</li>
+<li>Agro: 2.4 + 1 = 3.4. Servicios: 0.8 + 2 = 2.8.</li></ul>
+<p>${R('Agro, con 3.4')}: cada S/ 1 adicional de demanda final de Agro genera S/ 3.40 de producción en toda la economía. 3.2 y 3.0 son sumas de filas.</p>`},
+{id:'leon6',t:'leon',
+ q:`Para atender D = (60, 120), la nueva producción es X = (240, 300). En la tabla original, los insumos primarios eran 50 en Agro (de un total de 200) y 100 en Servicios (de 250). ¿Cuánto suman los nuevos insumos primarios?`,
+ o:['180, igual al total de la demanda final','171','540, igual a la producción total','150, no cambian'],a:0,
+ s:`<ol><li>Coeficientes primarios: Agro 50/200 = 0.25; Servicios 100/250 = 0.4 (también es 1 − la suma de cada columna de A).</li>
+<li>Nuevos insumos primarios: 0.25·240 = 60 y 0.4·300 = 120.</li>
+<li>Total: 60 + 120 = 180.</li></ol>
+<p>${R('180')}, que coincide con la demanda final 60 + 120 = 180: es el control de errores del modelo.</p>`},
+{id:'leon7',t:'leon',
+ q:`Tabla de dos sectores: el sector 1 vende 20 a sí mismo, 56 al sector 2 y 24 a la demanda final (total 100); el sector 2 vende 50 al sector 1, 8 a sí mismo y 22 a la demanda final (total 80). Si la nueva demanda final es D = (74, 37), ¿cuánto debe producir cada sector?`,
+ o:['X₁ = 250 y X₂ = 180','X₁ = 180 y X₂ = 250','X₁ = 236 y X₂ = 205','X₁ = 114.7 y X₂ = 77.7'],a:0,
+ s:`<ol><li>A (cada columna ÷ total del sector que compra): 20/100, 56/80, 50/100 y 8/80 → ${M([[0.2,0.7],[0.5,0.1]])}.</li>
+<li>I − A = ${M([[0.8,-0.7],[-0.5,0.9]])}; det = 0.72 − 0.35 = 0.37.</li>
+<li>X = (1/0.37) ${M([[0.9,0.7],[0.5,0.8]])} ${M([[74],[37]])}</li>
+<li>X₁ = (66.6 + 25.9)/0.37 = 92.5/0.37 = 250; X₂ = (37 + 29.6)/0.37 = 66.6/0.37 = 180.</li></ol>
+<p>${R('X = (250, 180)')}. La opción (236, 205) sale de dividir por filas.</p>`},
+{id:'leon8',t:'leon',
+ q:`En una matriz A de coeficientes técnicos, una columna suma 1.05. ¿Qué significa?`,
+ o:['El sector gasta en insumos intermedios más de lo que produce: no genera valor agregado y el modelo es inviable','Ese sector tiene el mayor multiplicador','Nada raro: las columnas de A siempre suman 1','Hay que restar 1 a la diagonal para corregirla'],a:0,
+ s:`<ul><li>Cada a<sub>ij</sub> está entre 0 y 1, y cada columna debe sumar ${R('menos de 1')}.</li>
+<li>Lo que falta para llegar a 1 es el coeficiente primario: valor agregado (remuneraciones, excedente, impuestos).</li>
+<li>Si una columna suma 1 o más, ese sector no genera valor agregado.</li></ul>`},
+
+/* ===== UNIDAD II · La recta ===== */
+{id:'recta1',t:'recta',
+ q:`Halla la ecuación general de la recta que pasa por (−1, 3) y (2, −3).`,
+ o:['2x + y − 1 = 0','2x − y + 1 = 0','x + 2y − 5 = 0','2x + y − 5 = 0'],a:0,
+ s:`<ol><li>m = (−3 − 3)/(2 − (−1)) = −6/3 = −2.</li>
+<li>Punto-pendiente con (−1, 3): y − 3 = −2(x + 1) → y = −2x + 1.</li>
+<li>Pasa todo a un lado: 2x + y − 1 = 0.</li></ol>
+<p>${R('2x + y − 1 = 0')}. Verifica con (2, −3): 4 − 3 − 1 = 0 ✓.</p>`},
+{id:'recta2',t:'recta',
+ q:`¿Cuál es la pendiente de la recta 3x − 4y + 8 = 0?`,
+ o:[F(3,4),'3','−'+F(3,4),'−'+F(4,3)],a:0,
+ s:`<ol><li>Despeja y: −4y = −3x − 8 → y = ${F(3,4)}x + 2.</li>
+<li>El coeficiente de x es la pendiente.</li></ol>
+<p>${R('m = 3/4')}. Atajo: m = −A/B = −3/(−4) = 3/4. Error frecuente: leer m = 3 sin despejar y.</p>`},
+{id:'recta3',t:'recta',
+ q:`Halla la recta que pasa por (1, 4) y es perpendicular a 2x + y − 5 = 0.`,
+ o:['x − 2y + 7 = 0','2x + y − 6 = 0','x + 2y − 9 = 0','x − 2y − 7 = 0'],a:0,
+ s:`<ol><li>Recta dada: y = −2x + 5 → m₁ = −2.</li>
+<li>Perpendicular: m₁ · m₂ = −1 → m₂ = ${F(1,2)}.</li>
+<li>y − 4 = ½(x − 1) → 2y − 8 = x − 1 → x − 2y + 7 = 0.</li></ol>
+<p>${R('x − 2y + 7 = 0')} (o y = ½x + 7/2). 2x + y − 6 = 0 sería la paralela por ese punto.</p>`},
+{id:'recta4',t:'recta',
+ q:`¿Cuáles son los interceptos de 2x + 5y − 10 = 0 con los ejes?`,
+ o:['(5, 0) y (0, 2)','(2, 0) y (0, 5)','(−5, 0) y (0, −2)','(10, 0) y (0, 10)'],a:0,
+ s:`<ul><li>Con el eje x, y = 0: 2x = 10 → x = 5 → (5, 0).</li>
+<li>Con el eje y, x = 0: 5y = 10 → y = 2 → (0, 2).</li></ul>
+<p>${R('(5, 0) y (0, 2)')}: con esos dos puntos ya puedes graficarla.</p>`},
+{id:'recta5',t:'recta',
+ q:`Las rectas y = 3x − 1 y x + 3y = 6 son:`,
+ o:['Perpendiculares','Paralelas','Coincidentes','Ni paralelas ni perpendiculares'],a:0,
+ s:`<ul><li>Primera: m₁ = 3. Segunda: y = −⅓x + 2 → m₂ = −⅓.</li>
+<li>m₁ · m₂ = 3 · (−⅓) = −1.</li></ul>
+<p>Son ${R('perpendiculares')}. Para ser paralelas necesitarían m₁ = m₂.</p>`},
+{id:'recta6',t:'recta',
+ q:`¿Cuál es la ecuación de la recta que pasa por (3, 4) y es perpendicular a la recta x = 2?`,
+ o:['y = 4','x = 3','y = 3','x = 4'],a:0,
+ s:`<ul><li>x = 2 es una recta vertical (pendiente no definida).</li>
+<li>Su perpendicular es horizontal (m = 0): y = constante.</li>
+<li>Como pasa por (3, 4), esa constante es 4.</li></ul>
+<p>${R('y = 4')}.</p>`},
+{id:'recta7',t:'recta',ex:true,
+ q:`En un criadero, a 20 °C un pez consume 50 g de alimento al día y a 26 °C consume 68 g. Si el consumo C está relacionado linealmente con la temperatura T (válido entre 15 y 30 °C), ¿cuál es la ecuación y cuánto consume a 24 °C?`,
+ o:['C = 3T − 10; consume 62 g','C = 3T + 10; consume 82 g','C = ⅓T + 43.3; consume 51.3 g','C = 3T − 10; consume 72 g'],a:0,
+ s:`<ol><li>Puntos (T, C): (20, 50) y (26, 68).</li>
+<li>m = (68 − 50)/(26 − 20) = 18/6 = 3 g por cada °C.</li>
+<li>C − 50 = 3(T − 20) → C = 3T − 10.</li>
+<li>C(24) = 3·24 − 10 = 62.</li></ol>
+<p>${R('C = 3T − 10, y a 24 °C consume 62 g')}. La pendiente se lee como tasa de cambio: +3 g por cada grado.</p>`},
+{id:'recta8',t:'recta',ex:true,
+ q:`Una máquina costó S/ 20 000 y a los 4 años vale S/ 12 000. Si se deprecia linealmente, ¿en cuántos años su valor llega a cero?`,
+ o:['10 años','6 años','8 años','12 años'],a:0,
+ s:`<ol><li>Puntos (t, V): (0, 20 000) y (4, 12 000).</li>
+<li>m = (12 000 − 20 000)/4 = −2 000: pierde S/ 2 000 por año.</li>
+<li>V = 20 000 − 2 000t. Si V = 0 → t = 10.</li></ol>
+<p>${R('A los 10 años')}. El 6 sale de dividir 12 000 entre 2 000 sin contar los 4 años que ya pasaron.</p>`},
+
+/* ===== Costo, ingreso y equilibrio ===== */
+{id:'equi1',t:'equi',
+ q:`Producir 200 mochilas cuesta S/ 5 000 y producir 300 cuesta S/ 6 800. Si el costo es lineal, ¿cuál es el costo fijo?`,
+ o:['S/ 1 400','S/ 1 800','S/ 3 600','S/ 5 000'],a:0,
+ s:`<ol><li>m = (6 800 − 5 000)/(300 − 200) = 1 800/100 = 18 → costo variable S/ 18 por mochila.</li>
+<li>C − 5 000 = 18(x − 200) → C(x) = 18x + 1 400.</li></ol>
+<p>Costo fijo (el intercepto): ${R('S/ 1 400')}. Es lo que pagas aunque produzcas 0.</p>`},
+{id:'equi2',t:'equi',
+ q:`El costo fijo semanal de un taller es S/ 800 y producir 40 unidades le cuesta S/ 1 400 en total. Si el costo es lineal, ¿cuánto cuesta producir 60 unidades?`,
+ o:['S/ 1 700','S/ 2 100','S/ 900','S/ 2 900'],a:0,
+ s:`<ol><li>C(x) = mx + 800. Con (40, 1 400): 1 400 = 40m + 800 → m = 15.</li>
+<li>C(x) = 15x + 800 → C(60) = 900 + 800 = 1 700.</li></ol>
+<p>${R('S/ 1 700')}. El 2 100 sale de una regla de tres, que ignora el costo fijo.</p>`},
+{id:'equi3',t:'equi',
+ q:`Una panadería de Breña tiene costos fijos de S/ 2 400 al mes, un costo variable de S/ 0.20 por pan y vende cada pan a S/ 0.50. ¿Cuál es su punto de equilibrio?`,
+ o:['8 000 panes, con ingreso de S/ 4 000','4 800 panes, con ingreso de S/ 2 400','12 000 panes, con ingreso de S/ 6 000','3 429 panes, con ingreso de S/ 1 714'],a:0,
+ s:`<ol><li>Margen de contribución: p − cv = 0.50 − 0.20 = 0.30 por pan.</li>
+<li>x<sub>e</sub> = CF/(p − cv) = 2 400/0.30 = 8 000 panes.</li>
+<li>I<sub>e</sub> = p · x<sub>e</sub> = 0.50 · 8 000 = S/ 4 000.</li></ol>
+<p>${R('8 000 panes al mes (S/ 4 000)')}. Por debajo hay pérdida; por encima, utilidad.</p>`},
+{id:'equi4',t:'equi',
+ q:`En la misma panadería (CF = S/ 2 400, cv = S/ 0.20, p = S/ 0.50), ¿cuántos panes debe vender para ganar S/ 1 500 al mes?`,
+ o:['13 000 panes','5 000 panes','7 800 panes','9 500 panes'],a:0,
+ s:`<ol><li>U = (p − cv)x − CF = 0.30x − 2 400.</li>
+<li>0.30x − 2 400 = 1 500 → 0.30x = 3 900 → x = 13 000.</li></ol>
+<p>${R('13 000 panes')}. Fórmula directa: x = (CF + U<sub>meta</sub>)/(p − cv).</p>`},
+{id:'equi5',t:'equi',
+ q:`Una empresa tiene CF = S/ 4 500, un costo variable de S/ 6 por unidad y vende a S/ 15. Si vende 300 unidades, ¿cuál es su utilidad?`,
+ o:['Pérdida de S/ 1 800','Ganancia de S/ 2 700','Ganancia de S/ 1 800','S/ 0: está en equilibrio'],a:0,
+ s:`<ol><li>U = (15 − 6)·300 − 4 500 = 2 700 − 4 500 = −1 800.</li>
+<li>Su equilibrio es x<sub>e</sub> = 4 500/9 = 500; con 300 unidades está por debajo.</li></ol>
+<p>${R('Pérdida de S/ 1 800')}.</p>`},
+{id:'equi6',t:'equi',
+ q:`Una empresa compra un componente a S/ 80 la unidad. Fabricarlo le costaría S/ 12 000 fijos al año más S/ 50 por unidad. ¿Desde cuántas unidades al año conviene fabricar?`,
+ o:['Desde 401 unidades (con 400 cuestan igual)','Desde 241 unidades','Desde 151 unidades','Nunca conviene fabricar'],a:0,
+ s:`<ol><li>Comprar: C₁ = 80x. Fabricar: C₂ = 50x + 12 000.</li>
+<li>Iguala: 80x = 50x + 12 000 → 30x = 12 000 → x = 400.</li>
+<li>Para x &gt; 400, fabricar es más barato: la recta 80x queda por encima.</li></ol>
+<p>${R('Más de 400 unidades al año')}; como son enteras, desde 401.</p>`},
+{id:'equi7',t:'equi',
+ q:`Demanda: 2p + 3x = 36. Oferta: 2p = x + 12. Halla el equilibrio de mercado.`,
+ o:['x = 6, p = 9','x = 4, p = 12','x = 12, p = 12','x = 9, p = 6'],a:0,
+ s:`<ol><li>Despeja p: demanda p = 18 − 1.5x; oferta p = 0.5x + 6.</li>
+<li>Iguala: 18 − 1.5x = 0.5x + 6 → 12 = 2x → x = 6.</li>
+<li>p = 0.5·6 + 6 = 9.</li></ol>
+<p>${R('Equilibrio: 6 unidades a un precio de 9')}. (4; 12) solo cumple la demanda y (12; 12) solo la oferta.</p>`},
+{id:'equi8',t:'equi',
+ q:`Una vendedora elige entre dos planes de pago: P1 = 2 000 + 150x y P2 = 500 + 250x, donde x son los paquetes que vende al mes. ¿Desde cuántos paquetes le conviene P2?`,
+ o:['Desde 16 paquetes (con 15 pagan igual)','Desde 6 paquetes','Desde 10 paquetes','P2 nunca conviene'],a:0,
+ s:`<ol><li>Iguala: 2 000 + 150x = 500 + 250x → 1 500 = 100x → x = 15.</li>
+<li>P2 tiene mayor pendiente (250 por paquete): después del cruce paga más.</li></ol>
+<p>${R('Desde 16 paquetes')}. Con menos de 15 conviene P1, porque su parte fija es mayor.</p>`},
+{id:'equi9',t:'equi',
+ q:`Si una empresa sube su precio de venta y mantiene su costo fijo y su costo variable, ¿qué pasa con su punto de equilibrio en unidades?`,
+ o:['Baja, porque aumenta el margen p − cv','Sube, porque vende más caro','No cambia: solo depende del costo fijo','Se vuelve negativo'],a:0,
+ s:`<ul><li>x<sub>e</sub> = CF/(p − cv). Si p sube, el denominador crece y x<sub>e</sub> ${R('disminuye')}.</li>
+<li>Con las chocotejas (CF = 1 800, cv = 1.5): con p = 3.50, x<sub>e</sub> = 900; con p = 4.50, x<sub>e</sub> = 600.</li></ul>
+<p>Recuerda: el equilibrio solo tiene sentido si p &gt; cv.</p>`},
+
+/* ===== La parábola ===== */
+{id:'parab1',t:'parab',ex:true,
+ q:`La función de demanda de un producto es p = 120 − 3q, donde p es el precio en dólares cuando se demandan q unidades. ¿Qué nivel de producción maximiza el ingreso total y cuánto es ese ingreso?`,
+ o:['q = 20; ingreso máximo $1 200','q = 40; ingreso máximo $0','q = 20; ingreso máximo $2 400','q = 20; ingreso máximo $60'],a:0,
+ s:`<ol><li>Ingreso = precio × cantidad: I(q) = (120 − 3q)q = 120q − 3q².</li>
+<li>Es una parábola con a = −3 &lt; 0: abre hacia abajo y su vértice es un máximo.</li>
+<li>h = −b/(2a) = −120/(2·(−3)) = 20.</li>
+<li>k = I(20) = 120·20 − 3·20² = 2 400 − 1 200 = 1 200.</li></ol>
+<p>${R('q = 20 unidades, ingreso máximo $1 200')}, a un precio de p = 120 − 60 = $60.</p>`},
+{id:'parab2',t:'parab',ex:true,
+ q:`El ingreso mensual por vender x unidades es R(x) = 24x − 0.03x² soles. ¿Cuántas unidades debe vender para maximizar el ingreso y cuál es el ingreso máximo?`,
+ o:['400 unidades; S/ 4 800','800 unidades; S/ 0','400 unidades; S/ 9 600','200 unidades; S/ 3 600'],a:0,
+ s:`<ol><li>a = −0.03, b = 24, c = 0.</li>
+<li>h = −b/(2a) = −24/(2·(−0.03)) = −24/(−0.06) = 400.</li>
+<li>k = R(400) = 24·400 − 0.03·400² = 9 600 − 4 800 = 4 800.</li></ol>
+<p>${R('400 unidades al mes, con ingreso máximo de S/ 4 800')}. Vértice V(400; 4 800).</p>`},
+{id:'parab3',t:'parab',
+ q:`La utilidad semanal de una startup es U(x) = −2x² + 160x − 1 200 (x en unidades, U en soles). ¿Cuál es la utilidad máxima?`,
+ o:['S/ 2 000, con 40 unidades','S/ 8 400, con 40 unidades','S/ 3 200, con 40 unidades','S/ −1 200, con 80 unidades'],a:0,
+ s:`<ol><li>a = −2 &lt; 0: hay un máximo en el vértice.</li>
+<li>h = −160/(2·(−2)) = 40.</li>
+<li>U(40) = −2(1 600) + 160·40 − 1 200 = −3 200 + 6 400 − 1 200 = 2 000.</li></ol>
+<p>${R('S/ 2 000 con 40 unidades')}. Cuidado: −2x² con x = 40 es −2·1 600 = −3 200.</p>`},
+{id:'parab4',t:'parab',
+ q:`Una empresa tiene ingreso I(q) = 60q − q² y costo C(q) = 20q + 300. ¿Para qué niveles de producción obtiene utilidad (U &gt; 0)?`,
+ o:['Entre 10 y 30 unidades','Menos de 10 o más de 30 unidades','Solo con 20 unidades','Desde 15 unidades en adelante'],a:0,
+ s:`<ol><li>U = I − C = 60q − q² − 20q − 300 = −q² + 40q − 300.</li>
+<li>U = 0 → q² − 40q + 300 = 0 → (q − 10)(q − 30) = 0 → q = 10 y q = 30: dos puntos de equilibrio.</li>
+<li>Como la parábola abre hacia abajo, U es positiva entre sus raíces.</li></ol>
+<p>${R('Hay utilidad entre 10 y 30 unidades')}. La máxima está en el vértice: q = 20, con U = 100.</p>`},
+{id:'parab5',t:'parab',
+ q:`¿Cuál es el vértice de y = x² − 8x + 12 y hacia dónde abre la parábola?`,
+ o:['V(4, −4), abre hacia arriba','V(4, −4), abre hacia abajo','V(−4, 60), abre hacia arriba','V(4, 12), abre hacia arriba'],a:0,
+ s:`<ol><li>a = 1 &gt; 0: abre hacia arriba y el vértice es un mínimo.</li>
+<li>h = −b/(2a) = 8/2 = 4; k = 4² − 8·4 + 12 = −4.</li>
+<li>Raíces: (x − 2)(x − 6) = 0 → corta al eje x en 2 y 6, y al eje y en (0, 12).</li></ol>
+<p>${R('V(4, −4), abre hacia arriba')}.</p>`},
+{id:'parab6',t:'parab',
+ q:`Demanda: p = 50 − q². Oferta: p = 2q + 15. ¿Cuál es el punto de equilibrio del mercado?`,
+ o:['q = 5, p = 25','q = 7, p = 29','q = −7, p = 1','q ≈ 11.7, p ≈ 38.3'],a:0,
+ s:`<ol><li>Iguala: 50 − q² = 2q + 15 → q² + 2q − 35 = 0.</li>
+<li>Factoriza: (q + 7)(q − 5) = 0 → q = −7 o q = 5.</li>
+<li>Una cantidad negativa no tiene sentido económico: q = 5, y p = 2·5 + 15 = 25.</li></ol>
+<p>${R('Equilibrio: 5 unidades a precio 25')}. Comprueba en la demanda: 50 − 25 = 25 ✓.</p>`},
+
+/* ===== Elipse e hipérbola ===== */
+{id:'conic1',t:'conic',
+ q:`En la elipse ${F('x²','25')} + ${F('y²','9')} = 1, ¿cuáles son los vértices y los focos?`,
+ o:['Vértices (±5, 0); focos (±4, 0)','Vértices (±25, 0); focos (±16, 0)','Vértices (±5, 0); focos (±√34, 0)','Vértices (0, ±3); focos (0, ±4)'],a:0,
+ s:`<ol><li>El denominador mayor va con x: eje mayor horizontal, a² = 25 → a = 5; b² = 9 → b = 3.</li>
+<li>En la elipse c² = a² − b² = 25 − 9 = 16 → c = 4.</li></ol>
+<p>${R('Vértices (±5, 0) y focos (±4, 0)')}. √34 sale de usar c² = a² + b², que es la relación de la hipérbola.</p>`},
+{id:'conic2',t:'conic',
+ q:`Para la hipérbola ${F('x²','16')} − ${F('y²','9')} = 1, ¿cuáles son sus asíntotas?`,
+ o:['y = ±'+F(3,4)+'x','y = ±'+F(4,3)+'x','y = ±'+F(9,16)+'x','No tiene asíntotas'],a:0,
+ s:`<ol><li>a² = 16 → a = 4; b² = 9 → b = 3.</li>
+<li>Asíntotas de x²/a² − y²/b² = 1: y = ±(b/a)x.</li>
+<li>Además c² = a² + b² = 25 → focos (±5, 0); vértices (±4, 0).</li></ol>
+<p>${R('y = ±(3/4)x')}.</p>`},
+{id:'conic3',t:'conic',
+ q:`¿Qué cónica representa la ecuación 4x² − 9y² = 36?`,
+ o:['Hipérbola','Elipse','Parábola','Circunferencia'],a:0,
+ s:`<ul><li>Divide entre 36: ${F('x²','9')} − ${F('y²','4')} = 1.</li>
+<li>x² e y² con signos opuestos → ${R('hipérbola')}.</li>
+<li>Con el mismo signo sería elipse (circunferencia si además los coeficientes son iguales); con una sola variable al cuadrado, parábola.</li></ul>`},
+{id:'conic4',t:'conic',
+ q:`La frontera de posibilidades de producción de una empresa es ${F('x²','400')} + ${F('y²','225')} = 1, con x, y ≥ 0. Si produce 12 unidades de x, ¿cuántas unidades de y puede producir como máximo?`,
+ o:['12','15','6','144'],a:0,
+ s:`<ol><li>Reemplaza x = 12: 144/400 + y²/225 = 1 → y²/225 = 1 − 0.36 = 0.64.</li>
+<li>y² = 225 · 0.64 = 144 → y = 12 (se toma la raíz positiva).</li></ol>
+<p>${R('12 unidades de y')}. Es un cuarto de elipse: producir más de x obliga a producir menos de y.</p>`},
+{id:'conic5',t:'conic',
+ q:`La demanda de un producto cumple p · q = 600. ¿Qué tipo de curva es y qué pasa con el ingreso total cuando baja el precio?`,
+ o:['Una hipérbola equilátera; el ingreso se mantiene en 600','Una parábola; el ingreso aumenta','Una elipse; el ingreso disminuye','Una recta; el ingreso se duplica'],a:0,
+ s:`<ul><li>xy = k (con k &gt; 0) es una ${R('hipérbola equilátera')} cuyas asíntotas son los ejes.</li>
+<li>El ingreso es I = p · q = 600 a cualquier precio: si el precio baja, la cantidad sube en la misma proporción.</li>
+<li>Las curvas de indiferencia tienen una forma parecida: convexas hacia el origen.</li></ul>`}
+];
+
+/* ---------- problemas de desarrollo (tipo parcial) ---------- */
+const PROBLEMAS=[
+{id:'p1',tema:'inec',t:'Producción en dos plantas',
+ en:`Una compañía fabricará un total de 6 000 unidades en las plantas A y B. ${TBL(['','Planta A','Planta B'],[['Costo unitario (mano de obra y material)','$6','$6.50'],['Costos fijos','$18 000','$22 000']])} Considerando ambas plantas, la compañía asignará no más de $77 000 para costos totales. ¿Cuál es el número mínimo de unidades que debe producir la planta A?`,
+ pasos:[
+  {h:'Define las variables',c:'x = unidades en A; 6 000 − x = unidades en B. Además, 0 ≤ x ≤ 6 000.'},
+  {h:'Escribe el costo de cada planta',c:'C<sub>A</sub> = 6x + 18 000. C<sub>B</sub> = 6.50(6 000 − x) + 22 000 = 39 000 − 6.5x + 22 000 = 61 000 − 6.5x.'},
+  {h:'Suma y plantea la inecuación',c:'C = 6x + 18 000 + 61 000 − 6.5x = 79 000 − 0.5x. “No más de” se escribe con ≤: 79 000 − 0.5x ≤ 77 000.'},
+  {h:'Despeja con cuidado',c:'−0.5x ≤ −2 000. Al dividir entre −0.5 se invierte el sentido: x ≥ 4 000.'},
+  {h:'Interpreta y verifica',c:'Junto con el dominio: 4 000 ≤ x ≤ 6 000. Verificación: C(4 000) = 79 000 − 2 000 = 77 000 ✓. Si te hubiera salido una cota negativa (por ejemplo x ≥ −1 000), el presupuesto no limitaría y el mínimo sería 0.'}
+ ],
+ final:'La planta A debe producir como mínimo 4 000 unidades.'},
+{id:'p2',tema:'parab',t:'Ingreso máximo con la demanda',
+ en:`La función de demanda para el fabricante de un producto es p = 360 − 4q, donde p es el precio (en dólares) por unidad cuando se demandan q unidades. Determina el nivel de producción que maximiza el ingreso total y calcula ese ingreso.`,
+ pasos:[
+  {h:'Arma la función de ingreso',c:'I = p · q = (360 − 4q)q = 360q − 4q².'},
+  {h:'Identifica la parábola',c:'a = −4, b = 360, c = 0. Como a &lt; 0, abre hacia abajo: el vértice es el máximo.'},
+  {h:'Calcula el vértice',c:'h = −b/(2a) = −360/(2·(−4)) = 45.'},
+  {h:'Evalúa el ingreso en el vértice',c:'k = I(45) = 360·45 − 4·45² = 16 200 − 8 100 = 8 100.'},
+  {h:'Interpreta',c:'Conviene producir 45 unidades; el precio será p = 360 − 4·45 = $180.'}
+ ],
+ final:'q = 45 unidades; ingreso máximo de $8 100.'},
+{id:'p3',tema:'sist',t:'Mezcla de fertilizantes con Gauss',
+ en:`Aplica el método de eliminación de Gauss con matriz aumentada. Un agricultor necesita exactamente 12 unidades de nitrógeno (N), 20 de fósforo (P) y 30 de potasio (K). Cada bolsa del fertilizante I aporta 1 de N, 1 de P y 2 de K; la del II, 1 de N, 2 de P y 3 de K; la del III, 2 de N, 3 de P y 4 de K. a) ¿Cuántas bolsas de cada tipo debe usar? b) Si cada bolsa cuesta S/ 30, S/ 45 y S/ 60 respectivamente, ¿cuánto gasta?`,
+ pasos:[
+  {h:'Plantea el sistema',c:'x, y, z = bolsas de I, II y III. '+SYS(['x + y + 2z = 12 (N)','x + 2y + 3z = 20 (P)','2x + 3y + 4z = 30 (K)'])},
+  {h:'Escribe la matriz aumentada',c:M([[1,1,2,12],[1,2,3,20],[2,3,4,30]],{aug:3})},
+  {h:'Ceros debajo del primer pivote',c:'R₂ → R₂ − R₁ y R₃ → R₃ − 2R₁: '+M([[1,1,2,12],[0,1,1,8],[0,1,0,6]],{aug:3})},
+  {h:'Ceros debajo del segundo pivote',c:'R₃ → R₃ − R₂: '+M([[1,1,2,12],[0,1,1,8],[0,0,-1,-2]],{aug:3})},
+  {h:'Sustitución regresiva',c:'−z = −2 → z = 2; y + 2 = 8 → y = 6; x + 6 + 2·2 = 12 → x = 2. Verifica K: 2·2 + 3·6 + 4·2 = 30 ✓.'},
+  {h:'b) Costo total',c:'30·2 + 45·6 + 60·2 = 60 + 270 + 120 = S/ 450.'}
+ ],
+ final:'a) 2 bolsas del I, 6 del II y 2 del III. b) Gasta S/ 450.'},
+{id:'p4',tema:'det',t:'Producto de matrices y determinantes',
+ en:`Dadas A = ${M([[1,0,2],[2,1,0],[0,3,1]])} y B = ${M([[1,1,0],[0,2,1],[3,0,1]])}: a) calcula AB mostrando el procedimiento; b) calcula el determinante de AB; c) verifica que det(AB) = det(A) · det(B).`,
+ pasos:[
+  {h:'a) Fila 1 de A por cada columna de B',c:'(1, 0, 2) con (1, 0, 3): 1 + 0 + 6 = 7; con (1, 2, 0): 1 + 0 + 0 = 1; con (0, 1, 1): 0 + 0 + 2 = 2.'},
+  {h:'Filas 2 y 3',c:'(2, 1, 0) da 2, 4 y 1. (0, 3, 1) da 3, 6 y 4.'},
+  {h:'Resultado del producto',c:'AB = '+M([[7,1,2],[2,4,1],[3,6,4]])},
+  {h:'b) det(AB) por Sarrus',c:'Bajan (+): 7·4·4 + 1·1·3 + 2·2·6 = 112 + 3 + 24 = 139. Suben (−): 2·4·3 + 7·1·6 + 1·2·4 = 24 + 42 + 8 = 74. det(AB) = 139 − 74 = 65.'},
+  {h:'c) det(A) y det(B) por cofactores',c:'det(A) = 1(1·1 − 0·3) − 0 + 2(2·3 − 1·0) = 1 + 12 = 13. det(B) = 1(2·1 − 1·0) − 1(0·1 − 1·3) + 0 = 2 + 3 = 5.'},
+  {h:'Verifica la propiedad',c:'det(A) · det(B) = 13 · 5 = 65 = det(AB) ✓.'}
+ ],
+ final:'AB = '+M([[7,1,2],[2,4,1],[3,6,4]])+' y det(AB) = 65 = 13 · 5.'},
+{id:'p5',tema:'recta',t:'Grillos y temperatura',
+ en:`El número de chirridos por minuto N de un grillo está relacionado linealmente con la temperatura T (en °C). A 20 °C chirría 80 veces por minuto y a 25 °C, 115 veces (válido entre 15 y 30 °C). a) Determina N en términos de T. b) ¿Cuántos chirridos hace a 28 °C? c) ¿A qué temperatura chirría 101 veces por minuto?`,
+ pasos:[
+  {h:'Ubica los puntos (T, N)',c:'(20, 80) y (25, 115).'},
+  {h:'Calcula la pendiente',c:'m = (115 − 80)/(25 − 20) = 35/5 = 7 chirridos por cada °C.'},
+  {h:'a) Escribe la ecuación',c:'N − 80 = 7(T − 20) → N = 7T − 60.'},
+  {h:'b) Evalúa en 28 °C',c:'N = 7·28 − 60 = 196 − 60 = 136 chirridos por minuto.'},
+  {h:'c) Despeja T',c:'101 = 7T − 60 → 7T = 161 → T = 23 °C.'}
+ ],
+ final:'N = 7T − 60; a 28 °C hace 136 chirridos; chirría 101 veces a 23 °C.'},
+{id:'p6',tema:'leon',t:'Reto de Leontief en parejas',
+ en:`Tabla insumo-producto: ${TBL(['','Primaria','Secundaria','D. final','Total'],[['Primaria',10,75,15,100],['Secundaria',50,60,40,150]])} Si la nueva demanda final es D = (40, 40), halla A y la nueva producción X. Luego calcula los nuevos insumos primarios y verifica el control.`,
+ pasos:[
+  {h:'Matriz A (columna ÷ total del sector que compra)',c:'A = '+M([['10/100','75/150'],['50/100','60/150']])+' = '+M([[0.1,0.5],[0.5,0.4]])+'. Las columnas suman 0.6 y 0.9 (menos de 1 ✓).'},
+  {h:'I − A y su determinante',c:'I − A = '+M([[0.9,-0.5],[-0.5,0.6]])+'; det = 0.54 − 0.25 = 0.29.'},
+  {h:'Inversa de Leontief',c:'(I − A)⁻¹ = (1/0.29) '+M([[0.6,0.5],[0.5,0.9]])+' ≈ '+M([[2.069,1.724],[1.724,3.103]])},
+  {h:'Nueva producción',c:'X₁ = (0.6·40 + 0.5·40)/0.29 = 44/0.29 ≈ 151.72. X₂ = (0.5·40 + 0.9·40)/0.29 = 56/0.29 ≈ 193.10.'},
+  {h:'Insumos primarios y control',c:'Coeficientes primarios: 1 − 0.6 = 0.4 y 1 − 0.9 = 0.1. Nuevos: 0.4·151.72 ≈ 60.69 y 0.1·193.10 ≈ 19.31. Total ≈ 80 = 40 + 40 ✓.'}
+ ],
+ final:'A = '+M([[0.1,0.5],[0.5,0.4]])+' y X ≈ (151.72; 193.10).'}
+];
+
+/* ---------- fórmulas clave ---------- */
+const FORMULAS=[
+{k:'inec',h:`<ul>
+<li>Multiplicar o dividir entre un negativo invierte el sentido: −2x ≤ 16 → x ≥ −8.</li>
+<li>“No más de”, “a lo sumo” → ≤. “Al menos”, “como mínimo” → ≥.</li>
+<li>Costo total = (costo unitario)·x + costo fijo.</li>
+<li>Interseca siempre con el dominio del problema: 0 ≤ x ≤ total.</li>
+<li>Inecuación cuadrática: factoriza, ubica las raíces y prueba el signo en cada zona.</li>
+<li>Intervalos: paréntesis = extremo abierto (&lt;, &gt;); corchete = cerrado (≤, ≥).</li></ul>`},
+{k:'matr',h:`<ul>
+<li>Orden m × n = filas × columnas; a<sub>ij</sub> está en la fila i, columna j.</li>
+<li>A(m×n) · B(n×p) = C(m×p): fila por columna. En general AB ≠ BA.</li>
+<li>kA multiplica cada elemento; A ± B se hace elemento a elemento (mismo orden).</li>
+<li>Aᵀ cambia filas por columnas. Identidad: AI = IA = A.</li></ul>`},
+{k:'det',h:`<ul>
+<li>Orden 2: ${M([['a','b'],['c','d']],{det:1})} = ad − bc.</li>
+<li>Sarrus (solo 3×3): suma de diagonales que bajan − suma de diagonales que suben.</li>
+<li>Cofactor: C<sub>ij</sub> = (−1)<sup>i+j</sup>·M<sub>ij</sub>, con signos + − + / − + − / + − +.</li>
+<li>Propiedades: |Aᵀ| = |A|; intercambiar filas cambia el signo; fila de ceros o filas proporcionales → 0; kR<sub>i</sub> multiplica por k; |kA| = kⁿ|A|; R<sub>i</sub> + kR<sub>j</sub> no lo cambia; triangular → producto de la diagonal; |AB| = |A||B|; |A⁻¹| = 1/|A|.</li>
+<li>Inversa 2×2: A⁻¹ = ${F(1,'ad − bc')} ${M([['d','−b'],['−c','a']])}, solo si det ≠ 0.</li></ul>`},
+{k:'sist',h:`<ul>
+<li>Forma matricial AX = B; si det(A) ≠ 0, X = A⁻¹B.</li>
+<li>Cramer: x = Δx/Δ, y = Δy/Δ, z = Δz/Δ (en Δx se cambia la columna de x por B).</li>
+<li>Gauss: [A | B] → escalonada → sustitución regresiva. Gauss-Jordan: [A | B] → [I | X].</li>
+<li>Operaciones válidas: R<sub>i</sub> ↔ R<sub>j</sub>; kR<sub>i</sub> con k ≠ 0; R<sub>i</sub> + kR<sub>j</sub>.</li>
+<li>Fila 0 = 0 → infinitas soluciones; fila 0 = c (c ≠ 0) → no hay solución.</li>
+<li>En Excel o Sheets: =MDETERM( ), =MINVERSA( ), =MMULT( ).</li></ul>`},
+{k:'leon',h:`<ul>
+<li>a<sub>ij</sub> = z<sub>ij</sub>/X<sub>j</sub>: cada columna ÷ producción del sector que compra.</li>
+<li>X = AX + D → (I − A)X = D → X = (I − A)⁻¹D.</li>
+<li>Cada columna de A suma menos de 1; coeficiente primario = 1 − suma de la columna.</li>
+<li>Multiplicador del sector j = suma de la columna j de (I − A)⁻¹.</li>
+<li>Control: total de insumos primarios = total de demanda final.</li></ul>`},
+{k:'recta',h:`<ul>
+<li>Pendiente: m = (y₂ − y₁)/(x₂ − x₁).</li>
+<li>Punto-pendiente: y − y₁ = m(x − x₁). Pendiente-intercepto: y = mx + b.</li>
+<li>General: Ax + By + C = 0, con m = −A/B y b = −C/B.</li>
+<li>Paralelas: m₁ = m₂. Perpendiculares: m₁ · m₂ = −1.</li>
+<li>Horizontal: y = b (m = 0). Vertical: x = a (m no definida).</li>
+<li>Interceptos: con el eje x haz y = 0; con el eje y haz x = 0.</li></ul>`},
+{k:'equi',h:`<ul>
+<li>C(x) = cv·x + CF; I(x) = p·x; U(x) = (p − cv)x − CF.</li>
+<li>Equilibrio: x<sub>e</sub> = CF/(p − cv); I<sub>e</sub> = p·x<sub>e</sub>.</li>
+<li>Utilidad meta: x = (CF + U<sub>meta</sub>)/(p − cv).</li>
+<li>Equilibrio de mercado: iguala oferta y demanda.</li>
+<li>Comparar planes o “fabricar o comprar”: iguala los costos y mira qué recta queda abajo después del cruce.</li></ul>`},
+{k:'parab',h:`<ul>
+<li>y = ax² + bx + c: si a &gt; 0 abre hacia arriba (mínimo); si a &lt; 0, hacia abajo (máximo).</li>
+<li>Vértice V(h, k): h = −b/(2a) y k = f(h).</li>
+<li>Raíces: factoriza o usa x = (−b ± √(b² − 4ac))/(2a).</li>
+<li>Ingreso con demanda lineal: I = p·q, que es una parábola.</li></ul>`},
+{k:'conic',h:`<ul>
+<li>Elipse ${F('x²','a²')} + ${F('y²','b²')} = 1 (a &gt; b): vértices (±a, 0), c² = a² − b², focos (±c, 0).</li>
+<li>Hipérbola ${F('x²','a²')} − ${F('y²','b²')} = 1: vértices (±a, 0), c² = a² + b², asíntotas y = ±(b/a)x.</li>
+<li>xy = k: hipérbola equilátera (demanda de ingreso constante).</li>
+<li>Ax² + Cy² = F: mismo signo → elipse; signos opuestos → hipérbola.</li></ul>`}
+];
+
+return {PREGUNTAS, PROBLEMAS, FORMULAS};
+})();
+const BANCO2=(()=>{
+const TEMAS={
+  inec:{u:1,n:'Inecuaciones y presupuestos'},
+  matr:{u:1,n:'Matrices y determinantes'},
+  sist:{u:1,n:'Sistemas: Cramer y Gauss-Jordan'},
+  leon:{u:1,n:'Modelo de Leontief'},
+  recta:{u:2,n:'La recta'},
+  equi:{u:2,n:'Costo, ingreso y equilibrio'},
+  parab:{u:2,n:'La parábola'}
+};
+const UNIDADES={
+  1:{n:'Unidad I',d:'Inecuaciones del parcial, matrices, determinantes, Cramer, Gauss-Jordan y Leontief.'},
+  2:{n:'Unidad II',d:'La recta y sus aplicaciones, y la parábola vista en clase.'}
+};
+
+const T_ME=TBL(['','Minería','Energía','D. final','Total'],[['Minería',80,80,40,200],['Energía',50,200,150,400],['Insumos primarios',70,120,'','']]);
+const A_ME=M([[0.4,0.2],[0.25,0.5]]);
+const INV_ME=M([[2,0.8],[1,2.4]]);
+
+const PREGUNTAS=[
+/* ===== Inecuaciones (pregunta 1 del parcial) ===== */
+{id:'i1',t:'inec',ex:true,
+ q:`Una compañía fabricará 4 000 unidades en total en las plantas A y B. En A el costo unitario es $8 y el costo fijo $12 000; en B el costo unitario es $9 y el costo fijo $10 000. Si se asignan no más de $56 000 para costos totales, ¿cuál es el número mínimo de unidades que debe producir la planta A?`,
+ o:['2 000 unidades','1 000 unidades','4 000 unidades','Ninguno: cualquier reparto respeta el presupuesto'],a:0,
+ s:`<ol><li>x en A y 4 000 − x en B.</li>
+<li>C = 8x + 12 000 + 9(4 000 − x) + 10 000 = 8x + 12 000 + 36 000 − 9x + 10 000 = 58 000 − x.</li>
+<li>58 000 − x ≤ 56 000 → −x ≤ −2 000 → x ≥ 2 000 (se invierte al multiplicar por −1).</li></ol>
+<p>${R('Mínimo 2 000 unidades en A')}. Verifica: 16 000 + 12 000 + 18 000 + 10 000 = 56 000 ✓.</p>`},
+{id:'i2',t:'inec',ex:true,
+ q:`Ahora la planta A es la más cara: $7 por unidad y $15 000 fijos; B cuesta $6 por unidad y $20 000 fijos. Se fabricarán 5 000 unidades en total y el costo total no debe superar $68 000. ¿Cuál es el número <b>máximo</b> de unidades que puede producir A?`,
+ o:['3 000 unidades','2 000 unidades','5 000 unidades','68 000 unidades'],a:0,
+ s:`<ol><li>C = 7x + 15 000 + 6(5 000 − x) + 20 000 = x + 65 000.</li>
+<li>x + 65 000 ≤ 68 000 → x ≤ 3 000.</li></ol>
+<p>${R('Máximo 3 000 unidades en A')}. Como aquí el coeficiente de x es positivo, la desigualdad no se invierte y sale un máximo; en el caso anterior (coeficiente negativo) salía un mínimo.</p>`},
+{id:'i3',t:'inec',
+ q:`En el enunciado “la compañía ha decidido asignar no más de $117 000 para costos totales”, ¿cómo se escribe la condición?`,
+ o:['C ≤ 117 000','C ≥ 117 000','C &lt; 117 000','C = 117 000'],a:0,
+ s:`<ul><li>“No más de”, “a lo sumo” o “como máximo” incluyen el valor límite: ${R('≤')}.</li>
+<li>“Al menos”, “no menos de” o “como mínimo”: ≥.</li></ul>`},
+{id:'i4',t:'inec',
+ q:`Resuelve 2(x − 3) + 5 ≥ 4x − 7.`,
+ o:['x ≤ 3','x ≥ 3','x ≤ −3','x ≥ −3'],a:0,
+ s:`<ol><li>2x − 6 + 5 ≥ 4x − 7 → 2x − 1 ≥ 4x − 7.</li>
+<li>2x − 4x ≥ −7 + 1 → −2x ≥ −6.</li>
+<li>Divide entre −2 e invierte: x ≤ 3.</li></ol><p>${R('CS = (−∞, 3]')}.</p>`},
+
+/* ===== Matrices y determinantes (sesión 3 y pregunta 4 del parcial) ===== */
+{id:'m1',t:'matr',
+ q:`Dada B = ${M([[5,-2],[0,7],[3,1]])}, ¿cuál es su orden y cuánto vale b₃₁?`,
+ o:['3 × 2 y b₃₁ = 3','2 × 3 y b₃₁ = 3','3 × 2 y b₃₁ = 1','3 × 2 y b₃₁ = 0'],a:0,
+ s:`<ul><li>3 filas y 2 columnas → 3 × 2.</li><li>b₃₁: fila 3, columna 1 → ${R('3')}.</li></ul><p>b₃₂ = 1 y b₂₁ = 0.</p>`},
+{id:'m2',t:'matr',
+ q:`Si A = [−5] es una matriz de orden 1, ¿cuánto vale det(A)?`,
+ o:['−5','5','0','No existe: el determinante es solo para 2 × 2 o más'],a:0,
+ s:`<p>El determinante de orden 1 es el mismo número: |a| = a. Por eso det(A) = ${R('−5')}. No es valor absoluto, aunque se escriba con barras.</p>`},
+{id:'m3',t:'matr',
+ q:`Calcula el determinante de ${M([[1,2,-1],[3,0,2],[1,1,1]])} por Sarrus.`,
+ o:['−7','7','9','−9'],a:0,
+ s:`<ol><li>Diagonales que bajan (+): 1·0·1 + 2·2·1 + (−1)·3·1 = 0 + 4 − 3 = 1.</li>
+<li>Diagonales que suben (−): (−1)·0·1 + 1·2·1 + 2·3·1 = 0 + 2 + 6 = 8.</li>
+<li>|A| = 1 − 8 = −7.</li></ol>
+<p>${R('|A| = −7')}. Con cofactores por la fila 1: 1(0 − 2) − 2(3 − 2) + (−1)(3 − 0) = −2 − 2 − 3 = −7 ✓.</p>`},
+{id:'m4',t:'matr',
+ q:`En la misma matriz ${M([[1,2,-1],[3,0,2],[1,1,1]])}, ¿cuánto vale el cofactor C₂₁?`,
+ o:['−3','3','−1','5'],a:0,
+ s:`<ol><li>Menor M₂₁: elimina la fila 2 y la columna 1 → ${M([[2,-1],[1,1]],{det:1})} = 2·1 − (−1)·1 = 3.</li>
+<li>Signo: (−1)<sup>2+1</sup> = −1 (en el tablero, la posición 2,1 es −).</li></ol>
+<p>${R('C₂₁ = −3')}.</p>`},
+{id:'m5',t:'matr',
+ q:`¿Cuánto vale el determinante de la matriz triangular ${M([[2,5,-1],[0,3,4],[0,0,-2]])}?`,
+ o:['−12','12','3','0'],a:0,
+ s:`<p>En una matriz triangular el determinante es el producto de la diagonal: 2 · 3 · (−2) = ${R('−12')}. Por eso en la sesión se triangula con R<sub>i</sub> → R<sub>i</sub> − kR<sub>j</sub>, que no cambia el determinante.</p>`},
+{id:'m6',t:'matr',ex:true,
+ q:`Dadas A = ${M([[1,2,0],[0,1,3],[2,0,1]])} y B = ${M([[1,0,1],[2,1,0],[0,1,1]])}, ¿cuál es la fila 2 de AB?`,
+ o:['(2, 4, 3)','(0, 1, 0)','(5, 2, 1)','(2, 1, 3)'],a:0,
+ s:`<ol><li>Fila 2 de A: (0, 1, 3).</li>
+<li>Por la columna 1 de B, (1, 2, 0): 0 + 2 + 0 = 2. Por la columna 2, (0, 1, 1): 0 + 1 + 3 = 4. Por la columna 3, (1, 0, 1): 0 + 0 + 3 = 3.</li></ol>
+<p>${R('(2, 4, 3)')}. Completa: AB = ${M([[5,2,1],[2,4,3],[2,1,3]])}. (0, 1, 0) es multiplicar elemento por elemento.</p>`},
+{id:'m7',t:'matr',ex:true,
+ q:`Con las mismas A = ${M([[1,2,0],[0,1,3],[2,0,1]])} y B = ${M([[1,0,1],[2,1,0],[0,1,1]])}, ¿cuánto vale det(AB)?`,
+ o:['39','16','10','−39'],a:0,
+ s:`<ol><li>det(A) por la fila 1: 1(1·1 − 3·0) − 2(0·1 − 3·2) + 0 = 1 + 12 = 13.</li>
+<li>det(B) por la fila 1: 1(1·1 − 0·1) − 0 + 1(2·1 − 1·0) = 1 + 2 = 3.</li>
+<li>det(AB) = det(A) · det(B) = 13 · 3 = 39.</li></ol>
+<p>${R('det(AB) = 39')}. Si calculas Sarrus sobre AB también sale 74 − 35 = 39: así verificas la propiedad, como pide el parcial.</p>`},
+{id:'m8',t:'matr',
+ q:`¿Cuál es la inversa de ${M([[5,2],[2,1]])}?`,
+ o:[M([[1,-2],[-2,5]]),M([[1,2],[2,5]]),M([[5,-2],[-2,1]]),M([[-1,2],[2,-5]])],a:0,
+ s:`<ol><li>det = 5·1 − 2·2 = 1.</li><li>Intercambia la diagonal (5 ↔ 1) y cambia el signo de la secundaria; multiplica por 1/1.</li></ol>
+<p>A⁻¹ = ${R(M([[1,-2],[-2,5]]))}. Truco de verificación: A · A⁻¹ = I.</p>`},
+
+/* ===== Sistemas: Cramer y Gauss-Jordan (sesión 3 y pregunta 3 del parcial) ===== */
+{id:'s1',t:'sist',
+ q:`En un modelo de producción AX = B, la gerencia encuentra que det(A) = 0. ¿Qué significa?`,
+ o:['No hay un plan único: hay infinitos planes o ninguno cumple todas las restricciones','Existe un único plan de producción','El plan óptimo es no producir nada','Hay que usar Cramer'],a:0,
+ s:`<ul><li>det(A) ≠ 0: los procesos son independientes y hay ${R('un único plan')} que usa exactamente los recursos.</li>
+<li>det(A) = 0: algún proceso es combinación de otros. Cramer no se puede aplicar; con Gauss-Jordan sabrás si son infinitas soluciones o ninguna.</li></ul>`},
+{id:'s2',t:'sist',
+ q:`Resuelve por Cramer: 3x + 2y = 7, x − 4y = 7.`,
+ o:['x = 3, y = −1','x = −3, y = 1','x = 1, y = 2','x = 3, y = 1'],a:0,
+ s:`<ol><li>Δ = ${M([[3,2],[1,-4]],{det:1})} = −12 − 2 = −14.</li>
+<li>Δx = ${M([[7,2],[7,-4]],{det:1})} = −28 − 14 = −42 → x = −42/−14 = 3.</li>
+<li>Δy = ${M([[3,7],[1,7]],{det:1})} = 21 − 7 = 14 → y = 14/−14 = −1.</li></ol>
+<p>${R('x = 3, y = −1')}. Verifica: 9 − 2 = 7 ✓ y 3 + 4 = 7 ✓.</p>`},
+{id:'s3',t:'sist',
+ q:`Un taller de Gamarra fabrica mochilas (x) y loncheras (y). En corte: 2x + y = 50 horas; en costura: x + 3y = 60 horas. Con Cramer, ¿cuántas fabrica usando todas las horas?`,
+ o:['18 mochilas y 14 loncheras','14 mochilas y 18 loncheras','20 mochilas y 10 loncheras','15 mochilas y 20 loncheras'],a:0,
+ s:`<ol><li>Δ = 2·3 − 1·1 = 5.</li><li>Δx = 50·3 − 1·60 = 90 → x = 18.</li><li>Δy = 2·60 − 50·1 = 70 → y = 14.</li></ol>
+<p>${R('18 mochilas y 14 loncheras')}. Verifica: 36 + 14 = 50 ✓ y 18 + 42 = 60 ✓. (20 y 10 solo cumple el corte.)</p>`},
+{id:'s4',t:'sist',
+ q:`En la matriz aumentada ${M([[1,2,1,8],[2,1,3,13],[3,1,2,11]],{aug:3})}, ¿cómo queda la fila 2 después de R₂ → R₂ − 2R₁?`,
+ o:['(0, −3, 1 | −3)','(0, 3, 1 | −3)','(0, −3, 1 | 3)','(−1, −3, 1 | −3)'],a:0,
+ s:`<p>Resta elemento por elemento, incluida la columna después de la barra: (2, 1, 3 | 13) − 2(1, 2, 1 | 8) = (2 − 2, 1 − 4, 3 − 2 | 13 − 16) = ${R('(0, −3, 1 | −3)')}.</p><p>Error común: no operar el término independiente.</p>`},
+{id:'s5',t:'sist',
+ q:`El sistema x + y + z = 4, x − y + 2z = 3, 2x + 3z = 7 se reduce con Gauss hasta que la última fila queda (0, 0, 0 | 0). ¿Qué tipo de sistema es?`,
+ o:['Compatible indeterminado: infinitas soluciones','Incompatible: no tiene solución','Compatible determinado: solución única','Compatible determinado con z = 0'],a:0,
+ s:`<ul><li>La tercera ecuación es la suma de las dos primeras: (1 + 1, 1 − 1, 1 + 2 | 4 + 3) = (2, 0, 3 | 7). Es redundante.</li>
+<li>Fila 0 = 0 → una variable queda libre (z = t): ${R('infinitas soluciones')}.</li>
+<li>Si fuera 0 = c con c ≠ 0, sería incompatible.</li></ul>`},
+{id:'s6',t:'sist',ex:true,
+ q:`Un criador de cuyes mezcla tres marcas de alimento para dar exactamente 13 unidades de proteína, 11 de fibra y 12 de minerales por semana. Por bolsa, la marca I aporta 1 de proteína, 2 de fibra y 1 de minerales; la II, 1, 1 y 2; la III, 2, 1 y 1. Con Gauss y matriz aumentada, ¿cuántas bolsas de cada marca usa?`,
+ o:['2 de I, 3 de II y 4 de III','3 de I, 2 de II y 4 de III','4 de I, 3 de II y 2 de III','2 de I, 4 de II y 3 de III'],a:0,
+ s:`<ol><li>${SYS(['x + y + 2z = 13 (proteína)','2x + y + z = 11 (fibra)','x + 2y + z = 12 (minerales)'])}</li>
+<li>${M([[1,1,2,13],[2,1,1,11],[1,2,1,12]],{aug:3})}</li>
+<li>R₂ → R₂ − 2R₁ y R₃ → R₃ − R₁: ${M([[1,1,2,13],[0,-1,-3,-15],[0,1,-1,-1]],{aug:3})}</li>
+<li>R₃ → R₃ + R₂: ${M([[1,1,2,13],[0,-1,-3,-15],[0,0,-4,-16]],{aug:3})}</li>
+<li>z = 4; −y − 12 = −15 → y = 3; x = 13 − 3 − 8 = 2.</li></ol>
+<p>${R('2 bolsas de I, 3 de II y 4 de III')}. Cada columna de la matriz es una marca; cada fila, un nutriente.</p>`},
+{id:'s7',t:'sist',ex:true,
+ q:`Con la mezcla de los cuyes (2 bolsas de I, 3 de II y 4 de III), si las bolsas cuestan S/ 25, S/ 30 y S/ 35, ¿cuánto se gasta por semana?`,
+ o:['S/ 280','S/ 90','S/ 275','S/ 285'],a:0,
+ s:`<p>25·2 + 30·3 + 35·4 = 50 + 90 + 140 = ${R('S/ 280')}. Es el producto del vector de precios por el vector solución.</p>`},
+{id:'s8',t:'sist',
+ q:`¿Cuál afirmación sobre Cramer y Gauss-Jordan es correcta?`,
+ o:['Gauss-Jordan sirve para cualquier sistema y lo clasifica; Cramer solo para sistemas n × n con det(A) ≠ 0','Cramer sirve para cualquier sistema, aunque det(A) = 0','Gauss-Jordan solo sirve para sistemas 2 × 2','Cramer y Gauss-Jordan dan resultados distintos'],a:0,
+ s:`<ul><li>Cramer: solo sistemas cuadrados con det ≠ 0; muy eficiente si solo te piden una incógnita.</li>
+<li>Gauss-Jordan: cualquier tamaño, y te dice si hay solución única, infinitas o ninguna.</li></ul><p>Cuando ambos se pueden usar, ${R('dan la misma solución')}.</p>`},
+{id:'s9',t:'sist',
+ q:`En Excel o Google Sheets, con A en A1:C3 y B en E1:E3, ¿qué fórmula da la solución X = A⁻¹B?`,
+ o:['=MMULT(MINVERSA(A1:C3);E1:E3)','=MDETERM(A1:C3)','=MINVERSA(E1:E3)','=SUMA(A1:C3;E1:E3)'],a:0,
+ s:`<p>${R('=MMULT(MINVERSA(A1:C3);E1:E3)')}. MDETERM da el determinante y MINVERSA la inversa. En inglés: MMULT, MINVERSE y MDETERM.</p>`},
+
+/* ===== Leontief (sesión 4) ===== */
+{id:'l1',t:'leon',
+ q:`Con esta tabla insumo-producto, ¿cuál es la matriz A? ${T_ME}`,
+ o:[A_ME,M([[0.4,0.4],[0.125,0.5]]),M([[0.4,0.2],[0.125,0.5]]),M([[0.2,0.4],[0.5,0.25]])],a:0,
+ s:`<ul><li>Columna Minería ÷ 200: 80/200 = 0.4 y 50/200 = 0.25.</li><li>Columna Energía ÷ 400: 80/400 = 0.2 y 200/400 = 0.5.</li></ul>
+<p>A = ${R(A_ME)}. Columnas: 0.65 y 0.7, menores que 1 ✓. ${M([[0.4,0.4],[0.125,0.5]])} sale de dividir por filas.</p>`},
+{id:'l2',t:'leon',
+ q:`En A = ${A_ME} (sector 1 = Minería, sector 2 = Energía), ¿qué significa a₂₁ = 0.25?`,
+ o:['Por cada unidad que produce Minería, compra 0.25 a Energía','Por cada unidad que produce Energía, compra 0.25 a Minería','Energía usa el 25 % de su propia producción','El 25 % de la minería va a la demanda final'],a:0,
+ s:`<p>a₂₁ está en la fila 2 (Energía vende) y la columna 1 (Minería compra): ${R('por cada unidad que produce Minería, le compra 0.25 a Energía')}. Recuerda: la columna es el sector que compra.</p>`},
+{id:'l3',t:'leon',
+ q:`Para A = ${A_ME}, ¿cuál es (I − A)⁻¹?`,
+ o:[INV_ME,M([[2.4,0.8],[1,2]]),M([[2,-0.8],[-1,2.4]]),M([[0.5,0.2],[0.25,0.6]])],a:0,
+ s:`<ol><li>I − A = ${M([[0.6,-0.2],[-0.25,0.5]])}.</li>
+<li>det = 0.6·0.5 − (−0.2)(−0.25) = 0.30 − 0.05 = 0.25.</li>
+<li>(1/0.25)·${M([[0.5,0.2],[0.25,0.6]])} = 4·(…)</li></ol>
+<p>(I − A)⁻¹ = ${R(INV_ME)}. ${M([[2.4,0.8],[1,2]])} sale de olvidar intercambiar la diagonal.</p>`},
+{id:'l4',t:'leon',
+ q:`Con (I − A)⁻¹ = ${INV_ME}, si la demanda final pasa a D = (60, 200), ¿cuánto debe producir cada sector?`,
+ o:['Minería 280 y Energía 540','Minería 540 y Energía 280','Minería 200 y Energía 400','Minería 280 y Energía 500'],a:0,
+ s:`<ol><li>X₁ = 2·60 + 0.8·200 = 120 + 160 = 280.</li><li>X₂ = 1·60 + 2.4·200 = 60 + 480 = 540.</li></ol>
+<p>${R('X = (280, 540)')}. Verifica con X = AX + D: 0.4·280 + 0.2·540 + 60 = 112 + 108 + 60 = 280 ✓.</p>`},
+{id:'l5',t:'leon',
+ q:`Con (I − A)⁻¹ = ${INV_ME}, ¿qué sector tiene mayor multiplicador de producción?`,
+ o:['Energía, con 3.2','Minería, con 3.0','Minería, con 2.8','Energía, con 3.4'],a:0,
+ s:`<p>Suma de columnas: Minería 2 + 1 = 3.0; Energía 0.8 + 2.4 = 3.2. ${R('Energía, con 3.2')}: cada S/ 1 extra de demanda final de energía genera S/ 3.20 de producción total. (2.8 y 3.4 son sumas de filas.)</p>`},
+{id:'l6',t:'leon',
+ q:`En la tabla original, los insumos primarios eran 70 en Minería (de 200) y 120 en Energía (de 400). Con la nueva producción X = (280, 540), ¿cuánto suman los nuevos insumos primarios?`,
+ o:['260','190','820','275'],a:0,
+ s:`<ol><li>Coeficientes primarios: 70/200 = 0.35 y 120/400 = 0.3.</li><li>Nuevos: 0.35·280 = 98 y 0.3·540 = 162 → total 260.</li></ol>
+<p>${R('260')}, igual a la nueva demanda final 60 + 200 = 260: el control cuadra ✓.</p>`},
+{id:'l7',t:'leon',
+ q:`¿Cuál de estos <b>no</b> es un supuesto del modelo de Leontief?`,
+ o:['Los coeficientes técnicos cambian cada periodo según la tecnología','Cada sector produce un solo bien','Producción total = insumos totales','La matriz A es constante en el periodo'],a:0,
+ s:`<p>El modelo supone ${R('A constante')} (tecnología fija). Por eso sus predicciones son confiables a corto plazo: con el cambio tecnológico, los coeficientes se modifican y habría que recalcular A.</p>`},
+
+/* ===== La recta (sesión 5 y clase del 6/10) ===== */
+{id:'r1',t:'recta',
+ q:`Halla la ecuación general de la recta que pasa por (−2, 5) y (4, −1).`,
+ o:['x + y − 3 = 0','x − y + 7 = 0','x + y + 3 = 0','x + y − 7 = 0'],a:0,
+ s:`<ol><li>m = (−1 − 5)/(4 − (−2)) = −6/6 = −1.</li><li>y = mx + b con (−2, 5): 5 = (−1)(−2) + b → b = 3 → y = −x + 3.</li><li>General: x + y − 3 = 0.</li></ol>
+<p>${R('x + y − 3 = 0')}. Verifica con (4, −1): 4 − 1 − 3 = 0 ✓.</p>`},
+{id:'r2',t:'recta',
+ q:`Una recta tiene pendiente −2 y ordenada al origen 4. ¿En qué punto corta al eje x?`,
+ o:['(2, 0)','(4, 0)','(−2, 0)','(0, 4)'],a:0,
+ s:`<ol><li>y = −2x + 4.</li><li>Eje x: y = 0 → −2x + 4 = 0 → x = 2.</li></ol><p>${R('(2, 0)')}. (0, 4) es el corte con el eje y.</p>`},
+{id:'r3',t:'recta',
+ q:`Halla la recta que pasa por (2, 1) y es perpendicular a 3x − y + 4 = 0.`,
+ o:['x + 3y − 5 = 0','3x − y − 5 = 0','x − 3y + 1 = 0','x + 3y + 5 = 0'],a:0,
+ s:`<ol><li>Despeja: y = 3x + 4 → m₁ = 3.</li><li>m₁ · m₂ = −1 → m₂ = −⅓.</li><li>y − 1 = −⅓(x − 2) → 3y − 3 = −x + 2 → x + 3y − 5 = 0.</li></ol>
+<p>${R('x + 3y − 5 = 0')}. 3x − y − 5 = 0 es la paralela.</p>`},
+{id:'r4',t:'recta',
+ q:`Halla la recta que pasa por (1, 3) y es paralela a 4x + 2y = 1.`,
+ o:['y = −2x + 5','y = 2x + 1','y = −2x + 1','y = ½x + 2.5'],a:0,
+ s:`<ol><li>4x + 2y = 1 → y = −2x + ½ → m = −2.</li><li>Paralela: misma pendiente. 3 = −2·1 + b → b = 5.</li></ol><p>${R('y = −2x + 5')}.</p>`},
+{id:'r5',t:'recta',
+ q:`¿Cuál es la recta que pasa por (−4, 6) y es paralela al eje y?`,
+ o:['x = −4','y = 6','y = −4','x = 6'],a:0,
+ s:`<p>Paralela al eje y significa vertical (pendiente no definida): todos sus puntos tienen la misma x. ${R('x = −4')}. La horizontal por ese punto sería y = 6.</p>`},
+{id:'r6',t:'recta',ex:true,
+ q:`La temperatura de ebullición del agua T (°C) baja linealmente con la altitud h (m): a 0 m es 100 °C y a 3 000 m es 90 °C (válido entre 0 y 5 000 m). ¿Cuál es la ecuación y a qué temperatura hierve el agua en Puno (3 900 m)?`,
+ o:[`T = 100 − ${F('h','300')}; 87 °C`,`T = 100 − ${F('h','300')}; 113 °C`,`T = 100 − 300h; −1 169 900 °C`,`T = 90 − ${F('h','300')}; 77 °C`],a:0,
+ s:`<ol><li>Puntos (h, T): (0, 100) y (3 000, 90).</li><li>m = (90 − 100)/(3 000 − 0) = −10/3 000 = −1/300 (baja 1 °C cada 300 m).</li><li>El intercepto es 100: T = 100 − h/300.</li><li>T(3 900) = 100 − 13 = 87.</li></ol>
+<p>${R('T = 100 − h/300; en Puno hierve a 87 °C')}.</p>`},
+
+/* ===== Costo, ingreso y equilibrio (sesión 5) ===== */
+{id:'e1',t:'equi',
+ q:`Los costos fijos de fabricar un artículo son $450 a la semana y fabricar 30 unidades cuesta $840 en total. Si el costo es lineal, ¿cuánto cuesta fabricar 50 unidades?`,
+ o:['$1 100','$1 400','$650','$1 290'],a:0,
+ s:`<ol><li>C = mx + 450; con (30, 840): 840 = 30m + 450 → m = 13.</li><li>C(50) = 13·50 + 450 = 650 + 450 = 1 100.</li></ol>
+<p>${R('$1 100')}. $1 400 sale de una regla de tres, que ignora el costo fijo.</p>`},
+{id:'e2',t:'equi',
+ q:`Producir 80 polos cuesta S/ 1 900 y producir 120 cuesta S/ 2 500. Si el costo es lineal, ¿cuál es el costo fijo y cuánto cuestan 200 polos?`,
+ o:['CF = S/ 700; 200 polos cuestan S/ 3 700','CF = S/ 1 900; 200 polos cuestan S/ 4 900','CF = S/ 600; 200 polos cuestan S/ 3 600','CF = S/ 15; 200 polos cuestan S/ 3 000'],a:0,
+ s:`<ol><li>m = (2 500 − 1 900)/(120 − 80) = 600/40 = 15 por polo.</li><li>C − 1 900 = 15(x − 80) → C = 15x + 700.</li><li>C(200) = 3 000 + 700 = 3 700.</li></ol>
+<p>${R('CF = S/ 700 y C(200) = S/ 3 700')}.</p>`},
+{id:'e3',t:'equi',
+ q:`Un puesto de chicha morada tiene costos fijos de S/ 2 160 al mes, costo variable de S/ 1.20 por vaso y vende cada vaso a S/ 3. ¿Cuál es su punto de equilibrio?`,
+ o:['1 200 vasos, con ingreso de S/ 3 600','720 vasos, con ingreso de S/ 2 160','1 800 vasos, con ingreso de S/ 5 400','514 vasos, con ingreso de S/ 1 543'],a:0,
+ s:`<ol><li>p − cv = 3 − 1.20 = 1.80.</li><li>x<sub>e</sub> = 2 160/1.80 = 1 200 vasos.</li><li>I<sub>e</sub> = 3 · 1 200 = S/ 3 600.</li></ol><p>${R('1 200 vasos al mes (S/ 3 600)')}.</p>`},
+{id:'e4',t:'equi',
+ q:`En el mismo puesto (CF = S/ 2 160, cv = S/ 1.20, p = S/ 3), ¿cuántos vasos debe vender para ganar S/ 900 al mes?`,
+ o:['1 700 vasos','500 vasos','1 020 vasos','2 100 vasos'],a:0,
+ s:`<p>x = (CF + U<sub>meta</sub>)/(p − cv) = (2 160 + 900)/1.80 = 3 060/1.80 = ${R('1 700 vasos')}.</p>`},
+{id:'e5',t:'equi',
+ q:`El costo diario de producir x sillas es C(x) = 4x + 600. Si se venden 200 sillas al día, ¿cuál es el precio mínimo para no perder?`,
+ o:['S/ 7','S/ 3','S/ 4','S/ 10'],a:0,
+ s:`<ol><li>C(200) = 4·200 + 600 = 1 400.</li><li>Sin pérdida: 200p = 1 400 → p = 7.</li></ol><p>${R('S/ 7 como precio mínimo')}.</p>`},
+{id:'e6',t:'equi',
+ q:`Una mueblería compra un componente a S/ 45. Fabricarlo cuesta S/ 18 000 fijos al año más S/ 30 por unidad. ¿Desde cuántas unidades al año conviene fabricar?`,
+ o:['Más de 1 200','Más de 600','Más de 400','Menos de 1 200'],a:0,
+ s:`<ol><li>45x = 30x + 18 000 → 15x = 18 000 → x = 1 200.</li><li>Con más de 1 200 unidades, fabricar sale más barato.</li></ol><p>${R('Más de 1 200 unidades al año')} (en 1 200 cuestan igual).</p>`},
+{id:'e7',t:'equi',
+ q:`Demanda: p = 40 − 3x. Oferta: p = 2x + 10. ¿Cuál es el equilibrio de mercado?`,
+ o:['x = 6, p = 22','x = 22, p = 6','x = 4, p = 28','x = 5, p = 25'],a:0,
+ s:`<ol><li>2x + 10 = 40 − 3x → 5x = 30 → x = 6.</li><li>p = 2·6 + 10 = 22.</li></ol><p>${R('6 unidades a precio 22')}. Comprueba en la demanda: 40 − 18 = 22 ✓.</p>`},
+{id:'e8',t:'equi',
+ q:`Una vendedora elige cómo le pagan: P1 = 3 000 + 200x o P3 = 400x (x = paquetes al mes). ¿Desde cuántos paquetes le conviene más P3?`,
+ o:['Desde 16 paquetes','Desde 8 paquetes','Desde 15 paquetes','Nunca'],a:0,
+ s:`<ol><li>Iguala: 400x = 3 000 + 200x → x = 15 (ambos pagan S/ 6 000).</li><li>P3 tiene mayor pendiente: después de 15 paga más.</li></ol><p>${R('Desde 16 paquetes')}; con menos, P1 paga más.</p>`},
+
+/* ===== La parábola (clase del 6/10 y pregunta 2 del parcial) ===== */
+{id:'p1',t:'parab',ex:true,
+ q:`La función de demanda de un producto es p = 300 − 5q (p en dólares, q en unidades). ¿Qué nivel de producción maximiza el ingreso total y cuánto es?`,
+ o:['q = 30; ingreso máximo $4 500','q = 60; ingreso máximo $0','q = 30; ingreso máximo $9 000','q = 30; ingreso máximo $150'],a:0,
+ s:`<ol><li>I = p·q = 300q − 5q². a = −5, b = 300.</li><li>h = −b/(2a) = −300/(−10) = 30.</li><li>k = I(30) = 9 000 − 4 500 = 4 500.</li></ol>
+<p>${R('q = 30; ingreso máximo $4 500')}, con precio p = 300 − 150 = $150.</p>`},
+{id:'p2',t:'parab',ex:true,
+ q:`El ingreso mensual por vender x unidades es R(x) = 18x − 0.02x² dólares. ¿Cuántas unidades maximizan el ingreso y cuál es el ingreso máximo?`,
+ o:['450 unidades; $4 050','900 unidades; $0','450 unidades; $8 100','225 unidades; $3 037.50'],a:0,
+ s:`<ol><li>a = −0.02, b = 18, c = 0.</li><li>h = −18/(2·(−0.02)) = −18/(−0.04) = 450.</li><li>k = 18·450 − 0.02·450² = 8 100 − 4 050 = 4 050.</li></ol><p>${R('450 unidades; $4 050')}. V(450; 4 050).</p>`},
+{id:'p3',t:'parab',
+ q:`Para graficar y = x² − 4x − 5, ¿cuál es su vértice y dónde corta al eje x?`,
+ o:['V(2, −9); corta en x = −1 y x = 5','V(−2, 7); corta en x = 1 y x = −5','V(2, −9); corta en x = 1 y x = −5','V(2, −5); corta en x = −1 y x = 5'],a:0,
+ s:`<ol><li>h = −(−4)/(2·1) = 2; k = 4 − 8 − 5 = −9 → V(2, −9).</li><li>x² − 4x − 5 = 0 → (x − 5)(x + 1) = 0 → x = 5 y x = −1.</li><li>a = 1 &gt; 0: abre hacia arriba; corta al eje y en (0, −5).</li></ol><p>${R('V(2, −9); raíces −1 y 5')}.</p>`},
+{id:'p4',t:'parab',
+ q:`La utilidad de un negocio es U(x) = −x² + 60x − 500. ¿Cuál es la utilidad máxima?`,
+ o:['400, con 30 unidades','1 300, con 30 unidades','−500, con 0 unidades','0, con 10 unidades'],a:0,
+ s:`<ol><li>h = −60/(2·(−1)) = 30.</li><li>U(30) = −900 + 1 800 − 500 = 400.</li></ol>
+<p>${R('400 con 30 unidades')}. Sus puntos de equilibrio son x = 10 y x = 50, donde U = 0.</p>`},
+{id:'p5',t:'parab',
+ q:`¿Por qué el vértice de I(q) = 300q − 5q² es un máximo y no un mínimo?`,
+ o:['Porque a = −5 &lt; 0 y la parábola abre hacia abajo','Porque b = 300 es positivo','Porque c = 0','Porque toda parábola tiene un máximo'],a:0,
+ s:`<p>El signo de a decide: si ${R('a &lt; 0, abre hacia abajo')} y el vértice es el punto más alto (máximo); si a &gt; 0, abre hacia arriba y el vértice es un mínimo, como en y = x² − 6x + 5.</p>`}
+];
+
+/* ---------- simulacro de parcial: mismas 5 preguntas en orden, más Leontief ---------- */
+const PROBLEMAS=[
+{id:'p1',tema:'inec',t:'Pregunta 1: producción en dos plantas',
+ en:`Una compañía fabricará un total de 9 000 unidades de su producto en las plantas A y B. ${TBL(['','Planta A','Planta B'],[['Costo unitario por mano de obra y material','$3','$3.40'],['Costos fijos','$25 000','$20 000']])} Considerando las dos plantas, la compañía ha decidido asignar no más de $73 000 para costos totales. ¿Cuál es el número mínimo de unidades que debe producir la planta A?`,
+ pasos:[
+  {h:'Variables',c:'x = unidades en A; 9 000 − x en B, con 0 ≤ x ≤ 9 000.'},
+  {h:'Costo total',c:'C = 3x + 25 000 + 3.40(9 000 − x) + 20 000 = 3x + 25 000 + 30 600 − 3.4x + 20 000 = 75 600 − 0.4x.'},
+  {h:'Inecuación',c:'75 600 − 0.4x ≤ 73 000 → −0.4x ≤ −2 600.'},
+  {h:'Despeja invirtiendo el sentido',c:'x ≥ 2 600/0.4 = 6 500.'},
+  {h:'Verifica',c:'C(6 500) = 75 600 − 2 600 = 73 000 ✓.'}
+ ],
+ final:'La planta A debe producir como mínimo 6 500 unidades.'},
+{id:'p2',tema:'parab',t:'Pregunta 2: ingreso máximo',
+ en:`La función de demanda para el fabricante de un producto es p = f(q) = 480 − 4q, donde p es el precio (en dólares) por unidad cuando se demandan q unidades. Determine el nivel de producción que maximiza el ingreso total del fabricante y calcule este ingreso.`,
+ pasos:[
+  {h:'Ingreso',c:'I(q) = p·q = 480q − 4q².'},
+  {h:'Parábola',c:'a = −4 &lt; 0 → abre hacia abajo: el vértice es máximo.'},
+  {h:'Vértice',c:'h = −b/(2a) = −480/(−8) = 60.'},
+  {h:'Ingreso máximo',c:'I(60) = 480·60 − 4·3 600 = 28 800 − 14 400 = 14 400. Precio: p = 480 − 240 = $240.'}
+ ],
+ final:'q = 60 unidades; ingreso máximo de $14 400.'},
+{id:'p3',tema:'sist',t:'Pregunta 3: canastas navideñas con Gauss',
+ en:`Aplique el método de eliminación de Gauss mostrando el procedimiento mediante matriz aumentada. Una bodega arma tres tipos de canastas navideñas. La canasta I lleva 1 panetón, 2 chocolates y 2 botellas de leche; la II, 1 panetón, 3 chocolates y 1 leche; la III, 2 panetones, 2 chocolates y 3 leches. Tiene exactamente 60 panetones, 110 chocolates y 85 leches. a) ¿Cuántas canastas de cada tipo arma usando todo? b) Si las vende a S/ 40, S/ 55 y S/ 70, ¿cuál es el ingreso total?`,
+ pasos:[
+  {h:'Sistema',c:SYS(['x + y + 2z = 60 (panetones)','2x + 3y + 2z = 110 (chocolates)','2x + y + 3z = 85 (leches)'])},
+  {h:'Matriz aumentada',c:M([[1,1,2,60],[2,3,2,110],[2,1,3,85]],{aug:3})},
+  {h:'R₂ → R₂ − 2R₁ y R₃ → R₃ − 2R₁',c:M([[1,1,2,60],[0,1,-2,-10],[0,-1,-1,-35]],{aug:3})},
+  {h:'R₃ → R₃ + R₂',c:M([[1,1,2,60],[0,1,-2,-10],[0,0,-3,-45]],{aug:3})},
+  {h:'Sustitución regresiva',c:'−3z = −45 → z = 15; y − 30 = −10 → y = 20; x + 20 + 30 = 60 → x = 10.'},
+  {h:'b) Ingreso',c:'40·10 + 55·20 + 70·15 = 400 + 1 100 + 1 050 = S/ 2 550.'}
+ ],
+ final:'a) 10 canastas I, 20 canastas II y 15 canastas III. b) S/ 2 550.'},
+{id:'p4',tema:'matr',t:'Pregunta 4: producto y determinantes',
+ en:`Dadas las matrices A = ${M([[2,0,1],[1,1,0],[0,2,1]])} y B = ${M([[1,2,0],[0,1,1],[1,0,2]])}: a) calcule AB mostrando el procedimiento; b) calcule el determinante de AB; c) verifique que det(AB) = det(A) · det(B).`,
+ pasos:[
+  {h:'a) Fila 1 de A, (2, 0, 1)',c:'Por (1, 0, 1): 2 + 0 + 1 = 3. Por (2, 1, 0): 4 + 0 + 0 = 4. Por (0, 1, 2): 0 + 0 + 2 = 2.'},
+  {h:'Filas 2 y 3',c:'(1, 1, 0) da 1, 3 y 1. (0, 2, 1) da 1, 2 y 4.'},
+  {h:'Producto',c:'AB = '+M([[3,4,2],[1,3,1],[1,2,4]])},
+  {h:'b) Sarrus en AB',c:'(+): 3·3·4 + 4·1·1 + 2·1·2 = 36 + 4 + 4 = 44. (−): 2·3·1 + 3·1·2 + 4·1·4 = 6 + 6 + 16 = 28. det(AB) = 16.'},
+  {h:'c) det(A) y det(B)',c:'det(A) = 2(1 − 0) − 0 + 1(2 − 0) = 4. det(B) = 1(2 − 0) − 2(0 − 1) + 0 = 4. 4 · 4 = 16 = det(AB) ✓.'}
+ ],
+ final:'AB = '+M([[3,4,2],[1,3,1],[1,2,4]])+'; det(AB) = 16 = 4 · 4.'},
+{id:'p5',tema:'recta',t:'Pregunta 5: frecuencia cardiaca y velocidad',
+ en:`La frecuencia cardiaca F (latidos por minuto) de un deportista aumenta linealmente con su velocidad v (km/h) al trotar. A 6 km/h su frecuencia es 110 y a 10 km/h es 150 (válido entre 5 y 14 km/h). a) Determine F en términos de v. b) Determine la frecuencia a 12 km/h. c) ¿A qué velocidad su frecuencia es 140?`,
+ pasos:[
+  {h:'Puntos (v, F)',c:'(6, 110) y (10, 150).'},
+  {h:'Pendiente',c:'m = (150 − 110)/(10 − 6) = 40/4 = 10 latidos por cada km/h.'},
+  {h:'a) Ecuación',c:'F − 110 = 10(v − 6) → F = 10v + 50.'},
+  {h:'b) A 12 km/h',c:'F = 120 + 50 = 170 latidos por minuto.'},
+  {h:'c) Despeja v',c:'140 = 10v + 50 → v = 9 km/h.'}
+ ],
+ final:'F = 10v + 50; 170 lpm a 12 km/h; 140 lpm a 9 km/h.'},
+{id:'p6',tema:'leon',t:'Extra: Leontief de Agro e Industria',
+ en:`Tabla insumo-producto (millones de soles): ${TBL(['','Agro','Industria','D. final','Total'],[['Agro',30,60,10,100],['Industria',20,40,140,200]])} a) Halle A. b) Si la demanda final cambia a D = (50, 150), halle X. c) Halle los nuevos insumos primarios y verifique el control.`,
+ pasos:[
+  {h:'a) Matriz A',c:'Columna Agro ÷ 100 y columna Industria ÷ 200: A = '+M([[0.3,0.3],[0.2,0.2]])+'. Columnas: 0.5 y 0.5 ✓.'},
+  {h:'I − A y determinante',c:'I − A = '+M([[0.7,-0.3],[-0.2,0.8]])+'; det = 0.56 − 0.06 = 0.50.'},
+  {h:'Inversa',c:'(I − A)⁻¹ = (1/0.5)'+M([[0.8,0.3],[0.2,0.7]])+' = '+M([[1.6,0.6],[0.4,1.4]])},
+  {h:'b) Producción',c:'X₁ = 1.6·50 + 0.6·150 = 80 + 90 = 170. X₂ = 0.4·50 + 1.4·150 = 20 + 210 = 230.'},
+  {h:'c) Insumos primarios',c:'Originales: 100 − 30 − 20 = 50 (coef. 0.5) y 200 − 60 − 40 = 100 (coef. 0.5). Nuevos: 85 + 115 = 200 = 50 + 150 ✓.'}
+ ],
+ final:'A = '+M([[0.3,0.3],[0.2,0.2]])+'; X = (170, 230); insumos primarios 200.'}
+];
+
+/* ---------- fórmulas: solo lo de las diapositivas ---------- */
+const FORMULAS=[
+{k:'inec',h:`<ul>
+<li>“No más de” → ≤; “al menos” → ≥.</li>
+<li>Costo total = costo unitario·x + costo fijo, sumando ambas plantas.</li>
+<li>Multiplicar o dividir entre un negativo invierte el sentido.</li>
+<li>Coeficiente de x negativo → sale un mínimo; positivo → un máximo. Interseca con 0 ≤ x ≤ total.</li></ul>`},
+{k:'matr',h:`<ul>
+<li>A(m×n)·B(n×p) = C(m×p): fila por columna.</li>
+<li>Orden 1: |a| = a. Orden 2: ad − bc. Orden 3: Sarrus (bajan − suben).</li>
+<li>Menor M<sub>ij</sub>: quita fila i y columna j. Cofactor C<sub>ij</sub> = (−1)<sup>i+j</sup>M<sub>ij</sub>. Laplace: suma de elementos por sus cofactores.</li>
+<li>|Aᵀ| = |A|; Rᵢ ↔ Rⱼ cambia el signo; fila nula o proporcional → 0; kRᵢ → k|A|; |kA| = kⁿ|A|; Rᵢ + kRⱼ no cambia; triangular → producto de la diagonal; |AB| = |A||B|; |A⁻¹| = 1/|A|.</li>
+<li>Inversa 2×2: ${F(1,'ad − bc')}${M([['d','−b'],['−c','a']])}. Existe solo si det ≠ 0.</li></ul>`},
+{k:'sist',h:`<ul>
+<li>AX = B: A tecnología, X decisiones, B recursos.</li>
+<li>Cramer: xᵢ = Δᵢ/Δ (cambia la columna i por B). Solo n×n con Δ ≠ 0.</li>
+<li>Gauss-Jordan: [A | B] → [I | X] con Rᵢ ↔ Rⱼ, kRᵢ (k ≠ 0), Rᵢ + kRⱼ.</li>
+<li>Única: r(A) = r(A|B) = n. Infinitas: fila 0 = 0. Ninguna: fila 0 = c ≠ 0.</li>
+<li>Excel: =MDETERM, =MINVERSA, =MMULT(MINVERSA(A);B).</li></ul>`},
+{k:'leon',h:`<ul>
+<li>Filas = ventas: Xᵢ = zᵢ₁ + zᵢ₂ + dᵢ. Columnas = compras: Xⱼ = z₁ⱼ + z₂ⱼ + vⱼ.</li>
+<li>a<sub>ij</sub> = z<sub>ij</sub>/X<sub>j</sub> (columna ÷ total del que compra).</li>
+<li>X = (I − A)⁻¹D. Multiplicador = suma de columna de (I − A)⁻¹.</li>
+<li>Coeficiente primario = 1 − suma de columna. Control: Σ primarios = Σ demanda final.</li></ul>`},
+{k:'recta',h:`<ul>
+<li>m = (y₂ − y₁)/(x₂ − x₁); y = mx + b; y − y₁ = m(x − x₁); Ax + By + C = 0 con m = −A/B.</li>
+<li>Paralelas m₁ = m₂; perpendiculares m₁·m₂ = −1.</li>
+<li>Horizontal y = b; vertical x = a (perpendicular a x = a es horizontal).</li>
+<li>Modelo lineal con dos datos: pendiente → punto-pendiente → evalúa.</li></ul>`},
+{k:'equi',h:`<ul>
+<li>C = cv·x + CF; I = p·x; U = (p − cv)x − CF.</li>
+<li>x<sub>e</sub> = CF/(p − cv); I<sub>e</sub> = p·x<sub>e</sub>; utilidad meta: x = (CF + U)/(p − cv).</li>
+<li>Precio mínimo vendiendo x₀: p = C(x₀)/x₀.</li>
+<li>Fabricar o comprar, planes de pago y mercado: iguala las dos rectas.</li></ul>`},
+{k:'parab',h:`<ul>
+<li>y = ax² + bx + c; vértice h = −b/(2a), k = f(h).</li>
+<li>a &lt; 0 → máximo; a &gt; 0 → mínimo.</li>
+<li>Ingreso con demanda lineal: I = p·q = (a − bq)q.</li>
+<li>Raíces: factoriza (x − r₁)(x − r₂) = 0.</li></ul>`}
+];
+
+return {PREGUNTAS, PROBLEMAS};
+})();
+const NUEVAS=[
+{id:'n1',t:'inec',
+ q:`El conjunto {x ∈ ℝ : −3 &lt; x ≤ 7} en notación de intervalo es:`,
+ o:['(−3, 7]','[−3, 7)','[−3, 7]','(−3, 7)'],a:0,
+ s:`<p>El extremo −3 no está incluido (&lt;), así que va con paréntesis; el 7 sí está incluido (≤), así que va con corchete: ${R('(−3, 7]')}. También se escribe ⟨−3; 7].</p>`},
+{id:'n2',t:'matr',
+ q:`¿Cuál de estas matrices es simétrica (A = Aᵀ)?`,
+ o:[M([[1,4],[4,3]]),M([[1,4],[-4,3]]),M([[1,0],[4,3]]),M([[0,2],[3,0]])],a:0,
+ s:`<p>La transpuesta cambia filas por columnas. Es simétrica si a<sub>ij</sub> = a<sub>ji</sub>: en ${R(M([[1,4],[4,3]]))} se cumple a₁₂ = a₂₁ = 4. Las otras tienen a₁₂ ≠ a₂₁.</p>`},
+{id:'n3',t:'matr',
+ q:`Si ${M([['x + y',3],[2,'x − y']])} = ${M([[7,3],[2,1]])}, ¿cuánto valen x e y?`,
+ o:['x = 4, y = 3','x = 3, y = 4','x = 7, y = 1','x = 5, y = 2'],a:0,
+ s:`<ol><li>Dos matrices son iguales si sus elementos correspondientes son iguales: x + y = 7 y x − y = 1.</li><li>Sumando: 2x = 8 → x = 4; luego y = 3.</li></ol><p>${R('x = 4, y = 3')}.</p>`},
+{id:'n4',t:'det',
+ q:`Los vectores fila (3, 1) y (2, 4) forman un paralelogramo. Según la interpretación geométrica del determinante, ¿cuál es su área?`,
+ o:['10','14','12','2'],a:0,
+ s:`<p>El área es el valor absoluto del determinante: |3·4 − 1·2| = |12 − 2| = ${R('10')}. Si el determinante fuera 0, los vectores serían paralelos y el área se aplastaría a cero (información redundante).</p>`},
+{id:'n5',t:'det',
+ q:`Al triangular ${M([[1,2,3],[2,5,7],[3,7,12]])} con R₂ − 2R₁, R₃ − 3R₁ y R₃ − R₂ se llega a una matriz triangular con diagonal 1, 1 y 2. ¿Cuánto vale el determinante original?`,
+ o:['2','4','6','0'],a:0,
+ s:`<ul><li>Sumar a una fila un múltiplo de otra no cambia el determinante, así que el original vale lo mismo que el triangular.</li><li>El determinante de una triangular es el producto de su diagonal: 1 · 1 · 2 = ${R('2')}.</li></ul>`},
+{id:'n6',t:'det',
+ q:`Para calcular el determinante de ${M([[2,1,3],[0,-1,4],[1,2,5]])} por cofactores con menos trabajo, ¿por dónde conviene desarrollar?`,
+ o:['Por la columna 1, porque tiene un cero','Por la fila 3, porque tiene el número más grande','Por la columna 3, porque no tiene negativos','Da lo mismo: no hay ninguna ventaja'],a:0,
+ s:`<p>Cualquier fila o columna da el mismo resultado, pero un cero elimina un término. Por la columna 1: 2·(−5 − 8) − 0 + 1·(4 + 3) = −26 + 7 = ${R('−19')}, igual que con Sarrus.</p>`},
+{id:'n7',t:'sist',
+ q:`En la forma matricial AX = B de un problema de producción, ¿qué representa B?`,
+ o:['Los recursos disponibles (términos independientes)','Las cantidades que se van a producir','La tecnología (coeficientes)','El determinante del sistema'],a:0,
+ s:`<p>A son los coeficientes (la tecnología), X las incógnitas (las decisiones de producción) y ${R('B los recursos disponibles')}, por ejemplo las horas de corte, costura y acabado.</p>`},
+{id:'n8',t:'sist',
+ q:`Un sistema tiene 3 incógnitas y cumple r(A) = r(A | B) = 2. ¿De qué tipo es?`,
+ o:['Compatible indeterminado: infinitas soluciones','Compatible determinado: solución única','Incompatible: no tiene solución','No se puede saber con los rangos'],a:0,
+ s:`<ul><li>Rouché–Frobenius: r(A) = r(A | B) = n → única; r(A) = r(A | B) &lt; n → infinitas; r(A) ≠ r(A | B) → ninguna.</li><li>Aquí los rangos son iguales (2) y menores que n = 3: ${R('infinitas soluciones')}.</li></ul>`},
+{id:'n9',t:'sist',
+ q:`Para hallar A⁻¹ con Gauss-Jordan, ¿de qué matriz se parte y a cuál se llega?`,
+ o:['De [A | I] a [I | A⁻¹]','De [A | B] a [I | X]','De [I | A] a [A | I]','De [A | 0] a [I | 0]'],a:0,
+ s:`<p>Se escribe A junto a la identidad y se aplican operaciones de fila hasta que la izquierda sea I: ${R('[A | I] → [I | A⁻¹]')}. Con [A | B] → [I | X] se resuelve un sistema, no se obtiene la inversa.</p>`},
+{id:'n10',t:'leon',
+ q:`En una tabla insumo-producto, la columna del sector P muestra 60 comprado a P, 100 comprado a Q y 40 de insumos primarios. ¿Cuál es la producción total de P?`,
+ o:['200','160','100','240'],a:0,
+ s:`<p>Por columnas (compras): X₁ = z₁₁ + z₂₁ + v₁ = 60 + 100 + 40 = ${R('200')}. Por filas debe dar lo mismo: lo que P usa, vende a Q y va a la demanda final.</p>`},
+{id:'n11',t:'leon',
+ q:`Si la columna de un sector en la matriz A suma 0.7, ¿cuál es su coeficiente primario?`,
+ o:['0.3','0.7','1.7','1.43'],a:0,
+ s:`<p>Coeficiente primario = 1 − (suma de la columna) = 1 − 0.7 = ${R('0.3')}. Es la parte de cada sol producido que corresponde a insumos primarios (valor agregado).</p>`},
+{id:'n12',t:'recta',
+ q:`En la recta 6x + 3y − 12 = 0, ¿cuáles son la pendiente y el intercepto con el eje y?`,
+ o:['m = −2 y b = 4','m = 6 y b = −12','m = 2 y b = −4','m = −½ y b = 4'],a:0,
+ s:`<ol><li>Despeja y: 3y = −6x + 12 → y = −2x + 4.</li><li>Con la fórmula: m = −A/B = −6/3 = −2 y b = −C/B = 12/3 = 4.</li></ol><p>${R('m = −2, b = 4')}.</p>`},
+{id:'n13',t:'recta',
+ q:`¿Cuál es la pendiente de la recta que pasa por (3, 2) y (−5, 2)?`,
+ o:['0; es la recta y = 2','No está definida; es la recta x = 3','0; es la recta x = 2','−1; es la recta y = −x + 5'],a:0,
+ s:`<p>m = (2 − 2)/(−5 − 3) = 0/−8 = 0. Pendiente cero significa recta horizontal: ${R('y = 2')}. La pendiente no está definida cuando las x son iguales (recta vertical).</p>`},
+{id:'n14',t:'equi',
+ q:`Una empresa vende menos unidades que su punto de equilibrio. ¿Qué ocurre?`,
+ o:['Tiene pérdida: la recta de costo está por encima de la de ingreso','Tiene utilidad: el ingreso está por encima del costo','No gana ni pierde','Su costo fijo se vuelve cero'],a:0,
+ s:`<p>Para x &lt; x<sub>e</sub>, C(x) &gt; I(x): ${R('hay pérdida')}. En x<sub>e</sub> no gana ni pierde (U = 0) y para x &gt; x<sub>e</sub> hay utilidad. La utilidad es la brecha vertical I − C.</p>`},
+{id:'n15',t:'equi',
+ q:`En GeoGebra ya escribiste C(x) = 1.5x + 1800 e I(x) = 3.5x. ¿Qué comando te da el punto de equilibrio?`,
+ o:['E = Interseca(C, I)','E = Raíz(C)','E = Extremo(I)','E = Pendiente(C)'],a:0,
+ s:`<p>${R('Interseca(C, I)')} (en inglés, Intersect) da el punto donde se cruzan las rectas: (900, 3150). También puedes definir U(x) = I(x) − C(x), que corta al eje x en 900.</p>`},
+{id:'n16',t:'parab',
+ q:`¿Cuáles son las raíces de 2x² − 3x − 2 = 0?`,
+ o:['x = 2 y x = −½','x = −2 y x = ½','x = 2 y x = ½','x = 1 y x = −2'],a:0,
+ s:`<ol><li>Fórmula general: x = [3 ± √(9 + 16)]/4 = (3 ± 5)/4.</li><li>x = 8/4 = 2 o x = −2/4 = −½.</li></ol><p>${R('x = 2 y x = −½')}. Comprueba: 2(4) − 6 − 2 = 0 ✓.</p>`}
+];
+
+const TEMAS={
+  inec:{u:1,n:'Inecuaciones y presupuestos'},
+  matr:{u:1,n:'Matrices'},
+  det:{u:1,n:'Determinantes e inversa'},
+  sist:{u:1,n:'Sistemas: Cramer y Gauss'},
+  leon:{u:1,n:'Modelo de Leontief'},
+  recta:{u:2,n:'La recta'},
+  equi:{u:2,n:'Costo, ingreso y equilibrio'},
+  parab:{u:2,n:'La parábola'}
+};
+const UNIDADES={
+  1:{n:'Unidad I',d:'Inecuaciones, matrices, determinantes, sistemas de ecuaciones y Leontief.'},
+  2:{n:'Unidad II',d:'La recta, sus aplicaciones económicas y la parábola.'}
+};
+const PREGUNTAS=(()=>{
+  const det2={m2:1,m3:1,m4:1,m5:1,m7:1,m8:1};
+  const todas=[].concat(
+    BANCO1.PREGUNTAS.filter(q=>q.t!=='conic'),
+    BANCO2.PREGUNTAS.map(q=>Object.assign({},q,{id:'b2'+q.id,t:(q.t==='matr'&&det2[q.id])?'det':q.t})),
+    NUEVAS);
+  const orden=Object.keys(TEMAS);
+  return todas.map((q,i)=>[q,i]).sort((x,y)=>(orden.indexOf(x[0].t)-orden.indexOf(y[0].t))||(x[1]-y[1])).map(x=>x[0]);
+})();
+const PROBLEMAS=[].concat(
+  BANCO2.PROBLEMAS.map((p,i)=>Object.assign({},p,{id:'s1'+p.id,g:'Simulacro 1',n:i+1})),
+  BANCO1.PROBLEMAS.map((p,i)=>Object.assign({},p,{id:'s2'+p.id,g:'Simulacro 2',n:i+1})));
+const FORMULAS=BANCO1.FORMULAS.filter(f=>f.k!=='conic');
+
+(() => {
+'use strict';
+const byId = Object.create(null);
+PREGUNTAS.forEach((q, i) => { q.idx = i; byId[q.id] = q; });
+const LET = ['a','b','c','d'];
+const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+const KEY = 'repasoMat1p3:';
+const store = {
+  get(k, d){ try { const v = window.localStorage.getItem(KEY + k); return v ? JSON.parse(v) : d; } catch(e){ return d; } },
+  set(k, v){ try { window.localStorage.setItem(KEY + k, JSON.stringify(v)); } catch(e){} },
+  del(k){ try { window.localStorage.removeItem(KEY + k); } catch(e){} }
+};
+let prog = store.get('prog', {}); if(!prog || typeof prog !== 'object') prog = {};
+let dev = store.get('dev', {}); if(!dev || typeof dev !== 'object') dev = {};
+
+const S = {
+  tab:'practica', view:'home', sel:new Set(Object.keys(TEMAS)), soloEx:false, mezclar:true, cant:20, modo: store.get('modo', 'final') === 'instante' ? 'instante' : 'final',
+  ses:null, prob:0, shown:0, anim:false, borrar:false,
+  timer:{ rest:3600, run:false, h:null }
+};
+
+const $app = document.getElementById('app');
+const $qbar = document.getElementById('qbar');
+const $abar = document.getElementById('abar');
+
+const ICON = {
+  box:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8.6l3 3 6.6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  ok:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.6l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  bad:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  okBig:'<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 17.5c2.6 1.6 4.8 4.4 6.6 8.3C15.4 16.4 20.6 9.7 27.5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  badBig:'<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7.5 7c5.4 4.9 11 11 17 18.5M25 6.5C18.6 12 12.8 18.6 7 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
+  lapiz:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.2-4.4L16.4 4.4a2.1 2.1 0 013 3L8.2 18.6zM14.4 6.4l3.2 3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  goma:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 19.5L4.2 15.1a1.8 1.8 0 010-2.5l8.9-8.9a1.8 1.8 0 012.5 0l4.9 4.9a1.8 1.8 0 010 2.5l-8.4 8.4zM9.3 8.5l6.2 6.2M12.2 19.5H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  deshacer:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5M4 9h10.5a5.5 5.5 0 010 11H11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  basura:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 002 2h6a2 2 0 002-2l1-12M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+};
+
+const shuffle = a => { a = a.slice(); for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+const pool = () => PREGUNTAS.filter(q => S.sel.has(q.t) && (!S.soloEx || q.ex));
+const countTema = k => PREGUNTAS.filter(q => q.t === k && (!S.soloEx || q.ex)).length;
+const nRonda = () => { const n = pool().length; return S.cant === 'all' ? n : Math.min(S.cant, n); };
+const temasDe = u => Object.keys(TEMAS).filter(k => TEMAS[k].u === u);
+const alInicio = () => window.scrollTo(0, 0);
+const mmss = t => String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0');
+
+/* ---------- hoja de trabajo: Apple Pencil, dedo o mouse ---------- */
+const LW = 640, GRID = 24, H_MAX = 3200;
+const NOMBRE_TINTA = { 1:'azul', 2:'grafito', 3:'roja' };
+const herramienta = { modo:'pen', color:1 };
+let penSeen = !!store.get('pen', 0);
+let dedoPref = store.get('dedo', 'auto');
+const dedoEscribe = () => dedoPref === 'auto' ? !penSeen : !!dedoPref;
+let hojaAbierta = store.get('hojaAbierta', null);
+if(typeof hojaAbierta !== 'boolean') hojaAbierta = !!(window.matchMedia && window.matchMedia('(min-width: 600px)').matches);
+let hoja = null, inercia = 0;
+
+/* Rechazo de palma: un toque que empieza mientras el lápiz escribe no activa botones. */
+const PALMA = { pen:0, ultimo:0, toques:new Set(), palmas:new Set(), hasta:0 };
+document.addEventListener('pointerdown', e => {
+  const ahora = performance.now();
+  if(e.pointerType === 'pen'){ PALMA.pen++; PALMA.ultimo = ahora; PALMA.toques.forEach(id => PALMA.palmas.add(id)); }
+  else if(e.pointerType === 'touch'){
+    if(PALMA.pen > 0 && ahora - PALMA.ultimo > 4000) PALMA.pen = 0;
+    PALMA.toques.add(e.pointerId);
+    if(PALMA.pen > 0 || ahora - PALMA.ultimo < 250) PALMA.palmas.add(e.pointerId);
+  }
+}, true);
+document.addEventListener('pointermove', e => { if(e.pointerType === 'pen' && e.buttons) PALMA.ultimo = performance.now(); }, true);
+const finPuntero = e => {
+  if(e.pointerType === 'pen'){ PALMA.pen = Math.max(0, PALMA.pen - 1); PALMA.ultimo = performance.now(); }
+  else if(e.pointerType === 'touch'){ PALMA.toques.delete(e.pointerId); if(PALMA.palmas.delete(e.pointerId)) PALMA.hasta = performance.now() + 450; }
+};
+document.addEventListener('pointerup', finPuntero, true);
+document.addEventListener('pointercancel', finPuntero, true);
+document.addEventListener('click', e => { if(performance.now() < PALMA.hasta){ e.preventDefault(); e.stopPropagation(); } }, true);
+
+const alCambiarTema = () => { if(hoja) hoja.redibujar(); };
+if(window.matchMedia){
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  if(mq.addEventListener) mq.addEventListener('change', alCambiarTema); else if(mq.addListener) mq.addListener(alCambiarTema);
+}
+if('MutationObserver' in window) new MutationObserver(alCambiarTema).observe(document.documentElement, { attributes:true, attributeFilter:['data-theme'] });
+window.addEventListener('resize', () => { if(hoja) hoja.ajustar(false); });
+
+function crearHoja(key, data, alCambiar){
+  const el = document.createElement('section');
+  el.className = 'hoja' + (hojaAbierta ? '' : ' cerrada');
+  el.setAttribute('aria-label', 'Hoja de trabajo');
+  el.innerHTML = '<div class="hoja-bar">' +
+      '<button type="button" class="hoja-tg" data-h="toggle" aria-expanded="' + hojaAbierta + '">' + ICON.lapiz + '<span>Hoja de trabajo</span><span class="hoja-tg-t">' + (hojaAbierta ? 'Ocultar' : 'Abrir') + '</span></button>' +
+      '<div class="hoja-tools" role="toolbar" aria-label="Herramientas de escritura">' +
+        [1, 2, 3].map(c => '<button type="button" class="ht tinta" data-h="color" data-c="' + c + '" aria-label="Tinta ' + NOMBRE_TINTA[c] + '" title="Tinta ' + NOMBRE_TINTA[c] + '"><i style="background:var(--pen-' + c + ')"></i></button>').join('') +
+        '<button type="button" class="ht" data-h="goma" aria-label="Borrador" title="Borrador">' + ICON.goma + '</button>' +
+        '<button type="button" class="ht" data-h="deshacer" aria-label="Deshacer el último trazo" title="Deshacer">' + ICON.deshacer + '</button>' +
+        '<button type="button" class="ht" data-h="limpiar" aria-label="Borrar toda la hoja" title="Borrar toda la hoja">' + ICON.basura + '</button>' +
+      '</div></div>' +
+    '<div class="hoja-papel"><canvas aria-label="Espacio para escribir a mano"></canvas></div>' +
+    '<div class="hoja-pie"><button type="button" class="link" data-h="mas">Más espacio</button>' +
+      '<label class="hoja-dedo"><input type="checkbox" data-h="dedo"><span>El dedo también escribe</span></label></div>';
+
+  const canvas = el.querySelector('canvas'), ctx = canvas.getContext('2d'), papel = el.querySelector('.hoja-papel');
+  const chkDedo = el.querySelector('input[data-h="dedo"]'), btnMas = el.querySelector('[data-h="mas"]');
+  const toques = new Map(), colores = {};
+  let esc = 1, cw = 0, ch = 0, dpr = 1, trazo = null, ptr = null, rect = null, tLimpiar = 0;
+
+  const leerColores = () => { const cs = getComputedStyle(document.documentElement); [1, 2, 3].forEach(c => { colores[c] = cs.getPropertyValue('--pen-' + c).trim() || '#2440B0'; }); };
+  const ancho = (st, p) => st.e ? 20 : 2.3 * (0.45 + 1.1 * p);
+  const estilo = st => { ctx.globalCompositeOperation = st.e ? 'destination-out' : 'source-over'; ctx.strokeStyle = ctx.fillStyle = st.e ? '#000' : colores[st.c]; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; };
+  const P = (st, j) => [st.p[3 * j], st.p[3 * j + 1], st.p[3 * j + 2]];
+  const medio = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+  function inicio(st){ const a = P(st, 0); ctx.beginPath(); ctx.arc(a[0], a[1], ancho(st, a[2]) / 2, 0, Math.PI * 2); ctx.fill(); }
+  function tramo(st, i){
+    const b = P(st, i - 1), c = P(st, i);
+    ctx.lineWidth = ancho(st, (b[2] + c[2]) / 2);
+    ctx.beginPath();
+    if(i === 1){ const m = medio(b, c); ctx.moveTo(b[0], b[1]); ctx.lineTo(m[0], m[1]); }
+    else { const a = P(st, i - 2), m0 = medio(a, b), m1 = medio(b, c); ctx.moveTo(m0[0], m0[1]); ctx.quadraticCurveTo(b[0], b[1], m1[0], m1[1]); }
+    ctx.stroke();
+  }
+  function cola(st){
+    const n = st.p.length / 3; if(n < 2) return;
+    const b = P(st, n - 2), c = P(st, n - 1), m = medio(b, c);
+    ctx.lineWidth = ancho(st, c[2]); ctx.beginPath(); ctx.moveTo(m[0], m[1]); ctx.lineTo(c[0], c[1]); ctx.stroke();
+  }
+  function dibujar(st){ if(!st.p.length) return; estilo(st); inicio(st); const n = st.p.length / 3; for(let i = 1; i < n; i++) tramo(st, i); cola(st); }
+  function redibujar(){
+    if(!cw) return;
+    leerColores();
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalCompositeOperation = 'source-over';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.setTransform(dpr * esc, 0, 0, dpr * esc, 0, 0);
+    data.s.forEach(dibujar);
+    if(trazo) dibujar(trazo);
+    ctx.globalCompositeOperation = 'source-over';
+  }
+  function ajustar(forzar){
+    const w = papel.clientWidth; if(!w) return;
+    const s = w / LW, h = Math.round(data.h * s);
+    if(!forzar && w === cw && h === ch) return;
+    cw = w; ch = h; esc = s; dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.style.height = h + 'px';
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    canvas.style.backgroundSize = (GRID * s) + 'px ' + (GRID * s) + 'px';
+    redibujar();
+  }
+  function pintarTools(){
+    el.querySelectorAll('.ht.tinta').forEach(b => b.setAttribute('aria-pressed', String(herramienta.modo === 'pen' && +b.dataset.c === herramienta.color)));
+    el.querySelector('[data-h="goma"]').setAttribute('aria-pressed', String(herramienta.modo === 'goma'));
+    chkDedo.checked = dedoEscribe();
+  }
+  function revisarMas(){ if(data.h >= H_MAX){ btnMas.disabled = true; btnMas.textContent = 'Llegaste al máximo de espacio'; } }
+  function aplicarAbierta(){
+    el.classList.toggle('cerrada', !hojaAbierta);
+    const tg = el.querySelector('.hoja-tg');
+    tg.setAttribute('aria-expanded', String(hojaAbierta));
+    tg.querySelector('.hoja-tg-t').textContent = hojaAbierta ? 'Ocultar' : 'Abrir';
+    if(hojaAbierta) ajustar(true);
+  }
+  const presion = ev => ev.pointerType === 'pen' ? (ev.pressure > 0 ? ev.pressure : 0.5) : 0.5;
+  function agregar(ev){
+    const x = Math.round((ev.clientX - rect.left) / esc * 2) / 2, y = Math.round((ev.clientY - rect.top) / esc * 2) / 2;
+    const p = trazo.p, n = p.length;
+    if(n && p[n - 3] === x && p[n - 2] === y) return false;
+    p.push(x, y, Math.round(presion(ev) * 20) / 20);
+    return true;
+  }
+  function marcarLapiz(){ if(!penSeen){ penSeen = true; store.set('pen', 1); chkDedo.checked = dedoEscribe(); } }
+  function moverToque(t, e){
+    if(t.palma || trazo){ t.palma = true; return; }
+    if(!t.mov && Math.abs(e.clientY - t.y0) < 10) return;
+    const dy = e.clientY - t.y, dt = Math.max(1, e.timeStamp - t.t);
+    t.mov = true; window.scrollBy(0, -dy);
+    t.v = 0.8 * (dy / dt) + 0.2 * t.v; t.y = e.clientY; t.t = e.timeStamp;
+  }
+  function lanzarInercia(v){
+    if(reduceMotion || Math.abs(v) < 0.25) return;
+    let vel = v, antes = performance.now();
+    const paso = ahora => {
+      const dt = ahora - antes; antes = ahora;
+      window.scrollBy(0, -vel * dt); vel *= Math.pow(0.94, dt / 16);
+      inercia = Math.abs(vel) > 0.03 ? requestAnimationFrame(paso) : 0;
+    };
+    inercia = requestAnimationFrame(paso);
+  }
+
+  canvas.addEventListener('pointerdown', e => {
+    if(e.pointerType === 'pen') marcarLapiz();
+    if(inercia){ cancelAnimationFrame(inercia); inercia = 0; }
+    if(e.pointerType === 'touch' && !dedoEscribe()){
+      e.preventDefault();
+      toques.set(e.pointerId, { y0:e.clientY, y:e.clientY, t:e.timeStamp, v:0, mov:false, palma: !!trazo || PALMA.pen > 0 });
+      try { canvas.setPointerCapture(e.pointerId); } catch(_){}
+      return;
+    }
+    if(e.pointerType === 'mouse' && e.button !== 0) return;
+    if(trazo) return;
+    e.preventDefault();
+    if(e.pointerType === 'pen') toques.forEach(t => { t.palma = true; });
+    try { canvas.setPointerCapture(e.pointerId); } catch(_){}
+    ptr = e.pointerId; rect = canvas.getBoundingClientRect();
+    trazo = { c: herramienta.color, e: (herramienta.modo === 'goma' || (e.buttons & 32) === 32) ? 1 : 0, p: [] };
+    agregar(e); leerColores(); estilo(trazo); inicio(trazo);
+    document.body.classList.add('dibujando');
+  });
+  canvas.addEventListener('pointermove', e => {
+    const t = toques.get(e.pointerId);
+    if(t){ e.preventDefault(); moverToque(t, e); return; }
+    if(!trazo || e.pointerId !== ptr) return;
+    e.preventDefault();
+    let evs = typeof e.getCoalescedEvents === 'function' ? e.getCoalescedEvents() : null;
+    if(!evs || !evs.length) evs = [e];
+    estilo(trazo);
+    for(const ev of evs){ if(agregar(ev)) tramo(trazo, trazo.p.length / 3 - 1); }
+  });
+  const terminar = e => {
+    const t = toques.get(e.pointerId);
+    if(t){ toques.delete(e.pointerId); if(t.mov && !t.palma && e.type === 'pointerup') lanzarInercia(t.v); return; }
+    if(!trazo || e.pointerId !== ptr) return;
+    estilo(trazo); cola(trazo); ctx.globalCompositeOperation = 'source-over';
+    data.s.push(trazo); trazo = null; ptr = null;
+    document.body.classList.remove('dibujando');
+    alCambiar();
+  };
+  canvas.addEventListener('pointerup', terminar);
+  canvas.addEventListener('pointercancel', terminar);
+  canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+  el.addEventListener('click', e => {
+    const b = e.target.closest('[data-h]');
+    if(!b || b.tagName === 'INPUT') return;
+    switch(b.dataset.h){
+      case 'toggle': hojaAbierta = !hojaAbierta; store.set('hojaAbierta', hojaAbierta); aplicarAbierta(); break;
+      case 'color': herramienta.modo = 'pen'; herramienta.color = +b.dataset.c; pintarTools(); break;
+      case 'goma': herramienta.modo = herramienta.modo === 'goma' ? 'pen' : 'goma'; pintarTools(); break;
+      case 'deshacer': if(data.s.length){ data.s.pop(); redibujar(); alCambiar(); } break;
+      case 'limpiar':
+        if(b.classList.contains('confirm')){
+          clearTimeout(tLimpiar); b.classList.remove('confirm'); b.setAttribute('aria-label', 'Borrar toda la hoja');
+          if(data.s.length){ data.s.length = 0; redibujar(); alCambiar(); }
+        } else {
+          b.classList.add('confirm'); b.setAttribute('aria-label', 'Toca otra vez para borrar toda la hoja');
+          tLimpiar = setTimeout(() => { b.classList.remove('confirm'); b.setAttribute('aria-label', 'Borrar toda la hoja'); }, 2500);
+        }
+        break;
+      case 'mas':
+        if(data.h < H_MAX){ data.h = Math.min(H_MAX, data.h + 400); ajustar(true); alCambiar(); }
+        revisarMas(); break;
+    }
+  });
+  chkDedo.addEventListener('change', () => { dedoPref = chkDedo.checked; store.set('dedo', dedoPref); });
+
+  pintarTools(); revisarMas();
+  const ro = 'ResizeObserver' in window ? new ResizeObserver(() => ajustar(false)) : null;
+  if(ro) ro.observe(papel);
+  return {
+    key, el, ajustar, redibujar,
+    destruir(){
+      if(ro) ro.disconnect();
+      if(trazo){ data.s.push(trazo); trazo = null; alCambiar(); }
+      clearTimeout(tLimpiar); toques.clear();
+      document.body.classList.remove('dibujando');
+      canvas.width = 0; canvas.height = 0; el.remove();
+    }
+  };
+}
+function montarHoja(slot, key, obtener, alCambiar){
+  if(!slot) return;
+  if(hoja && hoja.key === key){ slot.replaceWith(hoja.el); hoja.ajustar(false); return; }
+  cerrarHoja();
+  hoja = crearHoja(key, obtener(), alCambiar);
+  slot.replaceWith(hoja.el);
+  hoja.ajustar(true);
+}
+function cerrarHoja(){ if(hoja){ hoja.destruir(); hoja = null; } }
+
+/* Las hojas de los problemas de desarrollo se guardan en este dispositivo. */
+const hojasDev = {}, tGuardar = {};
+function codificar(d){
+  return { h: d.h, s: d.s.map(st => {
+    const a = [st.c, st.e]; let px = 0, py = 0;
+    for(let i = 0; i < st.p.length; i += 3){ const x = Math.round(st.p[i] * 2), y = Math.round(st.p[i + 1] * 2); a.push(x - px, y - py, Math.round(st.p[i + 2] * 20)); px = x; py = y; }
+    return a;
+  }) };
+}
+function decodificar(r){
+  if(!r || !Array.isArray(r.s)) return null;
+  try {
+    return { h: Math.min(H_MAX, Math.max(300, +r.h || 820)), s: r.s.map(a => {
+      const st = { c: a[0], e: a[1], p: [] }; let x = 0, y = 0;
+      for(let i = 2; i + 2 < a.length; i += 3){ x += a[i]; y += a[i + 1]; st.p.push(x / 2, y / 2, a[i + 2] / 20); }
+      return st;
+    }) };
+  } catch(_){ return null; }
+}
+function cargarHojaDev(pid){
+  if(!hojasDev[pid]) hojasDev[pid] = decodificar(store.get('hoja:' + pid, null)) || { h: 820, s: [] };
+  return hojasDev[pid];
+}
+function guardarHojaDev(pid, ya){
+  clearTimeout(tGuardar[pid]); delete tGuardar[pid];
+  const fn = () => { delete tGuardar[pid]; if(hojasDev[pid]) store.set('hoja:' + pid, codificar(hojasDev[pid])); };
+  if(ya) fn(); else tGuardar[pid] = setTimeout(fn, 600);
+}
+const guardarPendientes = () => Object.keys(tGuardar).forEach(pid => guardarHojaDev(pid, true));
+window.addEventListener('pagehide', guardarPendientes);
+document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'hidden') guardarPendientes(); });
+
+function chrome(quiz){
+  document.body.classList.toggle('modo-quiz', !!quiz);
+  if(!quiz) $qbar.hidden = true;
+  document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === S.tab)));
+}
+function abar(html){
+  if(html){ $abar.innerHTML = '<div class="wrap">' + html + '</div>'; $abar.hidden = false; document.body.classList.add('con-abar'); }
+  else { $abar.innerHTML = ''; $abar.hidden = true; document.body.classList.remove('con-abar'); }
+}
+
+function render(){
+  if(S.view === 'quiz') return renderQuiz();
+  if(S.view === 'res') return renderRes();
+  if(S.view === 'prob') return renderProb();
+  detenerReloj();
+  cerrarHoja();
+  chrome(false);
+  if(S.tab === 'practica') renderHome();
+  else if(S.tab === 'desarrollo') renderDev();
+  else renderForm();
+}
+
+/* ---------- inicio de práctica ---------- */
+function chip(k){
+  const n = countTema(k), on = S.sel.has(k);
+  return '<button type="button" class="chip" data-act="tema" data-k="' + k + '" aria-pressed="' + on + '"' + (n ? '' : ' disabled') + '>' +
+    '<span class="box">' + ICON.box + '</span><span>' + TEMAS[k].n + '</span><span class="n" aria-label="' + n + ' preguntas">' + n + '</span></button>';
+}
+function renderHome(){
+  const answered = Object.keys(prog).filter(id => byId[id]);
+  const okN = answered.filter(id => prog[id] === 1).length;
+  const errs = answered.filter(id => prog[id] === 0);
+  let h = '<section class="intro"><p>Elige los temas, cuántas preguntas quieres y cómo corregir. Cada pregunta trae una hoja cuadriculada para escribir con tu Apple Pencil o con el dedo.</p></section>';
+  [1, 2].forEach(u => {
+    const ks = temasDe(u), all = ks.every(k => S.sel.has(k));
+    h += '<section class="grupo"><div class="g-head"><h2>' + UNIDADES[u].n + '</h2><button type="button" class="link" data-act="unidad" data-u="' + u + '">' + (all ? 'Quitar todos' : 'Marcar todos') + '</button></div>' +
+      '<p class="g-sub">' + UNIDADES[u].d + '</p><div class="chips">' + ks.map(chip).join('') + '</div></section>';
+  });
+  const cants = [[20,'20'],[30,'30'],[40,'40'],[50,'50']], modos = [['final','Al final'],['instante','Al instante']];
+  h += '<section class="ajustes">' +
+    '<div class="fila"><span><b>Número de preguntas</b><small>Se eligen al azar entre los temas marcados.</small></span><span class="seg" role="radiogroup" aria-label="Número de preguntas">' +
+      cants.map(c => '<button type="button" role="radio" data-act="cant" data-v="' + c[0] + '" aria-checked="' + (S.cant === c[0]) + '">' + c[1] + '</button>').join('') + '</span></div>' +
+    '<div class="fila"><span><b>Corrección</b><small>' + (S.modo === 'final' ? 'Como en el examen: respondes todo y al final ves tu nota y las soluciones.' : 'Ves si acertaste y la solución después de cada pregunta.') + '</small></span><span class="seg" role="radiogroup" aria-label="Corrección">' +
+      modos.map(m => '<button type="button" role="radio" data-act="modo" data-v="' + m[0] + '" aria-checked="' + (S.modo === m[0]) + '">' + m[1] + '</button>').join('') + '</span></div>' +
+    '<label class="sw"><span><b>Solo preguntas tipo examen</b><small>Variantes de las preguntas del parcial: plantas, ingreso máximo, Gauss, matrices y recta.</small></span><input type="checkbox" id="soloEx"' + (S.soloEx ? ' checked' : '') + '></label>' +
+    '<label class="sw"><span><b>Mezclar el orden</b><small>Preguntas y alternativas en orden aleatorio.</small></span><input type="checkbox" id="mezclar"' + (S.mezclar ? ' checked' : '') + '></label>' +
+    '</section>';
+  if(answered.length || Object.keys(dev).length){
+    h += '<section class="avance"><h2>Tu avance</h2><p>' + (answered.length ? 'Respondiste ' + answered.length + ' de ' + PREGUNTAS.length + ' preguntas y acertaste ' + okN + ' en tu último intento.' : 'Aún no respondes preguntas de práctica.') + '</p><div class="avance-acc">' +
+      (errs.length ? '<button type="button" class="btn btn-sec" data-act="errores">Practicar las ' + errs.length + ' que fallé</button>' : '') +
+      '<button type="button" class="link" data-act="borrar">' + (S.borrar ? 'Toca otra vez para confirmar' : 'Borrar mi avance') + '</button></div></section>';
+  }
+  $app.innerHTML = h;
+  const n = nRonda();
+  abar('<button type="button" class="btn btn-pri" data-act="start"' + (n ? '' : ' disabled') + '>' + (n ? (pool().length < S.cant ? 'Empezar con las ' + n + ' preguntas de esos temas' : 'Empezar la prueba de ' + n + ' preguntas') : 'Marca al menos un tema') + '</button>');
+}
+
+function start(ids, limit){
+  ids = ids.filter(id => byId[id]);
+  if(!ids.length) return;
+  if(limit && S.cant !== 'all' && ids.length > S.cant) ids = shuffle(ids).slice(0, S.cant);
+  ids = S.mezclar ? shuffle(ids) : ids.slice().sort((x, y) => byId[x].idx - byId[y].idx);
+  const order = {};
+  ids.forEach(id => { const base = byId[id].o.map((_, i) => i); order[id] = S.mezclar ? shuffle(base) : base; });
+  S.ses = { ids, i:0, ans:{}, order, hojas:{}, final: S.modo === 'final', t0: Date.now(), confirmar:false };
+  if(S.ses.final) iniciarReloj();
+  S.view = 'quiz';
+  render(); alInicio();
+}
+
+/* ---------- ronda de preguntas ---------- */
+let relojH = 0;
+function iniciarReloj(){ detenerReloj(); relojH = setInterval(() => { const el = document.getElementById('reloj'); if(el && S.ses) el.textContent = mmss(Math.floor((Date.now() - S.ses.t0) / 1000)); }, 1000); }
+function detenerReloj(){ if(relojH){ clearInterval(relojH); relojH = 0; } }
+function pintarSel(){
+  const s = S.ses, r = s.ans[s.ids[s.i]];
+  $app.querySelectorAll('.opt').forEach(b => { const on = !!r && +b.dataset.oi === r.oi; b.classList.toggle('sel', on); b.setAttribute('aria-pressed', String(on)); });
+}
+function navFinal(){
+  const s = S.ses, last = s.i === s.ids.length - 1, falta = s.ids.filter(id => !s.ans[id]).length;
+  const fin = s.confirmar
+    ? '<button type="button" class="btn btn-alerta" data-act="terminar">' + (falta === 1 ? 'Falta 1: toca otra vez para terminar' : 'Faltan ' + falta + ': toca otra vez para terminar') + '</button>'
+    : (last ? '<button type="button" class="btn btn-pri" data-act="terminar">Terminar la prueba</button>' : '<button type="button" class="btn btn-pri" data-act="next">Siguiente</button>');
+  abar('<button type="button" class="btn btn-sec" data-act="prev"' + (s.i === 0 ? ' disabled' : '') + '>Anterior</button>' + fin);
+}
+function terminar(){
+  const s = S.ses, falta = s.ids.filter(id => !s.ans[id]).length;
+  if(falta && !s.confirmar){ s.confirmar = true; navFinal(); return; }
+  s.ids.forEach(id => { if(s.ans[id]) prog[id] = s.ans[id].ok ? 1 : 0; });
+  store.set('prog', prog);
+  s.duracion = Math.floor((Date.now() - s.t0) / 1000);
+  detenerReloj();
+  S.view = 'res'; render(); alInicio();
+}
+function prev(){ const s = S.ses; if(s.i > 0){ s.i--; s.confirmar = false; renderQuiz(); alInicio(); } }
+function renderQbar(){
+  if(S.ses.final){
+    const s = S.ses, hechas = s.ids.filter(id => s.ans[id]).length;
+    $qbar.hidden = false;
+    $qbar.innerHTML = '<div class="wrap qbar-in"><button type="button" class="link" data-act="salir">Salir</button>' +
+      '<span class="qpos">Pregunta ' + (s.i + 1) + ' de ' + s.ids.length + '</span>' +
+      '<span class="qreloj" id="reloj" aria-label="Tiempo transcurrido">' + mmss(Math.floor((Date.now() - s.t0) / 1000)) + '</span>' +
+      '<button type="button" class="link" data-act="terminar">Terminar</button></div>' +
+      '<div class="prog" aria-hidden="true"><i style="width:' + (100 * hechas / s.ids.length).toFixed(1) + '%"></i></div>';
+    return;
+  }
+  const s = S.ses; let ok = 0, bad = 0;
+  s.ids.forEach(id => { const r = s.ans[id]; if(r){ if(r.ok) ok++; else bad++; } });
+  $qbar.hidden = false;
+  $qbar.innerHTML = '<div class="wrap qbar-in"><button type="button" class="link" data-act="salir">Salir</button>' +
+    '<span class="qpos">Pregunta ' + (s.i + 1) + ' de ' + s.ids.length + '</span>' +
+    '<span class="qscore" aria-label="' + ok + ' correctas y ' + bad + ' incorrectas"><span class="c-ok">' + ICON.ok + ok + '</span><span class="c-bad">' + ICON.bad + bad + '</span></span></div>' +
+    '<div class="prog" aria-hidden="true"><i style="width:' + (100 * (ok + bad) / s.ids.length).toFixed(1) + '%"></i></div>';
+}
+function renderQuiz(){
+  chrome(true); renderQbar();
+  const s = S.ses, id = s.ids[s.i], q = byId[id], ord = s.order[id];
+  $app.innerHTML = '<article class="preg"><p class="qmeta"><span>' + TEMAS[q.t].n + '</span>' + (q.ex ? '<span class="tag">Tipo examen</span>' : '') + '</p>' +
+    '<div class="enun"><span class="num">' + (s.i + 1) + '.</span> ' + q.q + '</div>' +
+    '<div class="hoja-slot"></div>' +
+    '<ul class="opts">' + ord.map((oi, k) => '<li><button type="button" class="opt" data-act="resp" data-oi="' + oi + '"><span class="let" aria-hidden="true">' + LET[k] + ')</span><span class="txt">' + q.o[oi] + '</span><span class="mark" aria-hidden="true"></span></button></li>').join('') + '</ul>' +
+    '<div id="fb" aria-live="polite"></div></article>';
+  montarHoja($app.querySelector('.hoja-slot'), 'q:' + id, () => (s.hojas[id] = s.hojas[id] || { h:420, s:[] }), () => {});
+  if(s.final){ pintarSel(); navFinal(); }
+  else if(s.ans[id]) paint(false);
+  else abar('<button type="button" class="btn btn-pri" disabled>Elige una alternativa</button>');
+}
+function answer(oi){
+  if(S.ses.final){
+    const sf = S.ses, idf = sf.ids[sf.i];
+    sf.ans[idf] = { oi, ok: oi === byId[idf].a }; sf.confirmar = false;
+    pintarSel(); renderQbar(); navFinal(); return;
+  }
+  const s = S.ses, id = s.ids[s.i], q = byId[id];
+  if(s.ans[id]) return;
+  const ok = oi === q.a;
+  s.ans[id] = { oi, ok };
+  prog[id] = ok ? 1 : 0; store.set('prog', prog);
+  renderQbar(); paint(true);
+}
+function paint(scroll){
+  const s = S.ses, id = s.ids[s.i], q = byId[id], r = s.ans[id], pos = s.order[id].indexOf(q.a);
+  $app.querySelectorAll('.opt').forEach(b => {
+    const oi = +b.dataset.oi, m = b.querySelector('.mark');
+    b.disabled = true;
+    if(oi === q.a){ b.classList.add('ok'); m.innerHTML = ICON.okBig; }
+    else if(oi === r.oi){ b.classList.add('bad'); m.innerHTML = ICON.badBig; }
+    else b.classList.add('dim');
+  });
+  const fb = document.getElementById('fb');
+  fb.innerHTML = '<p class="fb ' + (r.ok ? 'ok' : 'bad') + '">' + (r.ok ? 'Correcto.' : 'No es esa: la correcta es la ' + LET[pos] + ').') + '</p>' +
+    '<div class="sol"><h3>Solución</h3>' + q.s + '</div>';
+  const last = s.i === s.ids.length - 1;
+  abar('<button type="button" class="btn btn-pri" data-act="next">' + (last ? 'Ver mi nota' : 'Siguiente pregunta') + '</button>');
+  if(scroll){
+    const btn = $abar.querySelector('button'); if(btn) btn.focus({ preventScroll:true });
+    const t = fb.getBoundingClientRect().top;
+    if(t > window.innerHeight * 0.6) window.scrollBy({ top: t - window.innerHeight * 0.3, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+}
+function next(){
+  const s = S.ses;
+  if(s.i < s.ids.length - 1){ s.i++; s.confirmar = false; renderQuiz(); }
+  else if(s.final){ terminar(); return; }
+  else { S.view = 'res'; render(); }
+  alInicio();
+}
+
+/* ---------- nota final ---------- */
+function renderRes(){
+  cerrarHoja();
+  chrome(false);
+  const s = S.ses, tot = s.ids.length;
+  const ok = s.ids.filter(id => s.ans[id] && s.ans[id].ok).length;
+  const nota = Math.round(20 * ok / tot), ap = nota >= 11, nada = s.ids.filter(id => !s.ans[id]).length;
+  detenerReloj();
+  const per = {};
+  s.ids.forEach(id => { const t = byId[id].t; per[t] = per[t] || { ok:0, n:0 }; per[t].n++; if(s.ans[id] && s.ans[id].ok) per[t].ok++; });
+  const temas = Object.keys(TEMAS).filter(k => per[k]);
+  const weak = temas.filter(k => per[k].ok / per[k].n < 0.7);
+  const fails = s.ids.filter(id => !(s.ans[id] && s.ans[id].ok));
+  $app.innerHTML = '<section class="resul">' +
+    '<div class="nota' + (ap ? '' : ' desap') + '" role="img" aria-label="Nota ' + nota + ' de 20">' +
+      '<svg viewBox="0 0 220 150" aria-hidden="true"><path pathLength="1" d="M46 96C30 52 70 20 118 18c52-2 84 28 80 60-4 34-46 58-92 56-48-2-84-26-82-60 2-26 28-40 60-46"/></svg>' +
+      '<span class="v">' + nota + '</span><span class="d">/20</span></div>' +
+    '<p class="res-msg"><b>' + (ap ? 'Aprobado.' : 'Todavía no apruebas.') + '</b> Acertaste ' + ok + ' de ' + tot + (nada ? ' (' + nada + ' sin responder)' : '') + (s.duracion ? ' en ' + mmss(s.duracion) : '') + '. La nota mínima del curso es 11.</p>' +
+    '<h2>Por tema</h2><div class="bars">' + temas.map(k => {
+      const r = per[k], pct = Math.round(100 * r.ok / r.n);
+      return '<div class="bar-row"><span>' + TEMAS[k].n + '</span><span class="ft">' + r.ok + '/' + r.n + '</span><div class="bar" aria-hidden="true"><i style="width:' + pct + '%"></i></div></div>';
+    }).join('') + '</div>' +
+    (weak.length
+      ? '<p class="repasa">Practica primero estos temas (cada botón abre una ronda solo de ese tema):</p><div class="chips">' + weak.map(k => '<button type="button" class="chip" data-act="solo" data-k="' + k + '"><span>' + TEMAS[k].n + '</span></button>').join('') + '</div>'
+      : '<p class="repasa">Vas bien en todos los temas de esta ronda. Prueba los problemas de desarrollo para practicar el procedimiento completo.</p>') +
+    revision() + '</section>';
+  abar((fails.length ? '<button type="button" class="btn btn-pri" data-act="repetir">Repetir las ' + fails.length + ' que no acertaste</button>' : '') +
+    '<button type="button" class="btn btn-sec" data-act="inicio">Elegir temas</button>');
+}
+
+function revision(){
+  const s = S.ses;
+  return '<section class="revision"><h2>Revisa tus respuestas</h2>' +
+    '<div class="seg rev-filtro" role="radiogroup" aria-label="Qué preguntas mostrar"><button type="button" role="radio" data-act="filtro" data-v="todas" aria-checked="true">Todas</button><button type="button" role="radio" data-act="filtro" data-v="err" aria-checked="false">Solo errores</button></div>' +
+    '<ol class="rev">' + s.ids.map((id, i) => {
+      const q = byId[id], r = s.ans[id], est = !r ? 'nada' : (r.ok ? 'ok' : 'bad');
+      const letra = oi => LET[s.order[id].indexOf(oi)] + ') ';
+      return '<li class="' + est + '"><details><summary><span class="rn">' + (i + 1) + '.</span><span class="rt">' + TEMAS[q.t].n + '</span><span class="re">' + (est === 'ok' ? 'Correcta' : est === 'bad' ? 'Incorrecta' : 'Sin responder') + '</span></summary>' +
+        '<div class="rbody"><div class="enun">' + q.q + '</div>' +
+        (r ? '<p class="ra"><b>Tu respuesta:</b> ' + letra(r.oi) + q.o[r.oi] + '</p>' : '') +
+        (est !== 'ok' ? '<p class="ra"><b>Correcta:</b> ' + letra(q.a) + q.o[q.a] + '</p>' : '') +
+        '<div class="sol"><h3>Solución</h3>' + q.s + '</div></div></details></li>';
+    }).join('') + '</ol></section>';
+}
+
+/* ---------- desarrollo ---------- */
+function pill(id){
+  const v = dev[id];
+  return v === 'ok' ? '<span class="pill ok">Me salió</span>' : v === 'rep' ? '<span class="pill rep">Repasar</span>' : '<span class="pill">Pendiente</span>';
+}
+function timerBox(){
+  const T = S.timer, used = T.rest < 3600;
+  return '<div class="timer' + (T.rest <= 300 ? ' low' : '') + '"><span class="t" id="tmr">' + (T.rest === 0 ? 'Tiempo' : mmss(T.rest)) + '</span>' +
+    '<span class="t-l">El parcial dura 60 minutos: cronométrate con los 6 problemas de un simulacro.</span><span class="t-b">' +
+    '<button type="button" class="btn btn-sec btn-sm" data-act="tmr">' + (T.run ? 'Pausar' : (used && T.rest > 0 ? 'Seguir' : 'Iniciar')) + '</button>' +
+    (used ? '<button type="button" class="link" data-act="tmr0">Reiniciar</button>' : '') + '</span></div>';
+}
+function renderDev(){
+  $app.innerHTML = '<section class="intro"><p>Problemas como los del parcial. Resuélvelos en la hoja de trabajo con todo el procedimiento y luego compara con la solución, un paso a la vez. Lo que escribas en cada problema queda guardado en este dispositivo.</p></section>' +
+    timerBox() +
+    Object.entries(PROBLEMAS.reduce((g, p, i) => { (g[p.g] = g[p.g] || []).push([p, i]); return g; }, {})).map(([nom, items]) =>
+      '<h2 class="f-u">' + nom + '</h2><ol class="plist">' + items.map(([p, i]) => '<li><button type="button" class="pitem" data-act="prob" data-i="' + i + '"><span class="pn">' + p.n + '</span><span class="pt">' + p.t + '</span><span class="ps">' + TEMAS[p.tema].n + '</span>' + pill(p.id) + '</button></li>').join('') + '</ol>').join('');
+  abar(null);
+}
+function renderProb(){
+  chrome(false);
+  const p = PROBLEMAS[S.prob], n = p.pasos.length, shown = S.shown, T = S.timer;
+  const mini = (T.run || T.rest < 3600) ? '<span class="mini-t">Cronómetro <span id="tmr">' + (T.rest === 0 ? 'Tiempo' : mmss(T.rest)) + '</span></span>' : '';
+  let h = '<div class="volver-fila"><button type="button" class="link" data-act="devlist">Volver a la lista</button>' + mini + '</div>' +
+    '<article class="prob"><p class="qmeta"><span>' + p.g + ', problema ' + p.n + ' de ' + PROBLEMAS.filter(x => x.g === p.g).length + '</span><span class="tag">' + TEMAS[p.tema].n + '</span></p>' +
+    '<h2 class="p-tit">' + p.t + '</h2><div class="enun">' + p.en + '</div>' +
+    (shown === 0 ? '<p class="hint">Escribe tu solución en la hoja. Después revela la solución paso a paso y compara.</p>' : '') +
+    '<div class="hoja-slot"></div>' +
+    '<ol class="steps">' + p.pasos.slice(0, shown).map((st, i) => '<li' + (S.anim && i === shown - 1 ? ' class="new"' : '') + '><h4>' + st.h + '</h4><div>' + st.c + '</div></li>').join('') + '</ol>';
+  if(shown === n){
+    h += '<div class="final"><b>Respuesta:</b> ' + p.final + '</div>' +
+      '<div class="auto"><p>¿Cómo te fue?</p><div class="auto-b">' +
+      '<button type="button" class="btn ' + (dev[p.id] === 'ok' ? 'btn-pri' : 'btn-sec') + '" data-act="auto" data-v="ok" aria-pressed="' + (dev[p.id] === 'ok') + '">Me salió bien</button>' +
+      '<button type="button" class="btn ' + (dev[p.id] === 'rep' ? 'btn-pri' : 'btn-sec') + '" data-act="auto" data-v="rep" aria-pressed="' + (dev[p.id] === 'rep') + '">Debo repasarlo</button></div></div>';
+  }
+  h += '</article>';
+  $app.innerHTML = h;
+  montarHoja($app.querySelector('.hoja-slot'), 'p:' + p.id, () => cargarHojaDev(p.id), () => guardarHojaDev(p.id));
+  S.anim = false;
+  if(shown < n){
+    abar('<button type="button" class="btn btn-pri" data-act="paso">Ver paso ' + (shown + 1) + ' de ' + n + '</button>' + (shown > 0 ? '<button type="button" class="btn btn-sec" data-act="todos">Ver todo</button>' : ''));
+  } else {
+    abar(S.prob < PROBLEMAS.length - 1
+      ? '<button type="button" class="btn btn-pri" data-act="sigprob">Siguiente problema</button>'
+      : '<button type="button" class="btn btn-sec" data-act="devlist">Volver a la lista</button>');
+  }
+}
+function verUltimo(){
+  const el = $app.querySelector('.final') || $app.querySelector('.steps li:last-child');
+  if(!el) return;
+  const r = el.getBoundingClientRect(), limite = window.innerHeight - 110;
+  if(r.bottom > limite) window.scrollBy({ top: r.bottom - limite + 16, behavior: reduceMotion ? 'auto' : 'smooth' });
+}
+
+/* ---------- cronómetro ---------- */
+function paintTimer(){
+  const el = document.getElementById('tmr');
+  if(!el) return;
+  el.textContent = S.timer.rest === 0 ? 'Tiempo' : mmss(S.timer.rest);
+  const box = el.closest('.timer');
+  if(box) box.classList.toggle('low', S.timer.rest <= 300);
+}
+function tick(){
+  const T = S.timer;
+  T.rest = Math.max(0, T.rest - 1);
+  if(T.rest === 0){ clearInterval(T.h); T.h = null; T.run = false; if(S.view !== 'quiz' && S.view !== 'res') render(); return; }
+  paintTimer();
+}
+function toggleTimer(){
+  const T = S.timer;
+  if(T.run){ clearInterval(T.h); T.h = null; T.run = false; }
+  else { if(T.rest === 0) T.rest = 3600; T.run = true; T.h = setInterval(tick, 1000); }
+  render();
+}
+function resetTimer(){
+  const T = S.timer;
+  clearInterval(T.h); T.h = null; T.run = false; T.rest = 3600;
+  render();
+}
+
+/* ---------- fórmulas ---------- */
+function renderForm(){
+  $app.innerHTML = '<section class="intro"><p>Lo esencial de cada tema para revisar antes del parcial.</p></section>' +
+    [1, 2].map(u => '<h2 class="f-u">' + UNIDADES[u].n + '</h2>' +
+      FORMULAS.filter(f => TEMAS[f.k].u === u).map(f => '<details class="fm"><summary>' + TEMAS[f.k].n + '</summary><div class="fm-b">' + f.h + '</div></details>').join('')).join('');
+  abar(null);
+}
+
+/* ---------- eventos ---------- */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]');
+  if(!b || b.disabled) return;
+  const a = b.dataset.act;
+  if(a !== 'borrar') S.borrar = false;
+  switch(a){
+    case 'tab':
+      S.tab = b.dataset.tab; S.view = 'home'; render(); alInicio(); break;
+    case 'tema': {
+      const k = b.dataset.k; if(S.sel.has(k)) S.sel.delete(k); else S.sel.add(k);
+      renderHome(); const nb = $app.querySelector('[data-act="tema"][data-k="' + k + '"]'); if(nb) nb.focus(); break; }
+    case 'unidad': {
+      const ks = temasDe(+b.dataset.u), all = ks.every(k => S.sel.has(k));
+      ks.forEach(k => { if(all) S.sel.delete(k); else S.sel.add(k); });
+      renderHome(); break; }
+    case 'modo':
+      S.modo = b.dataset.v === 'instante' ? 'instante' : 'final'; store.set('modo', S.modo); renderHome(); break;
+    case 'prev': prev(); break;
+    case 'terminar': terminar(); break;
+    case 'filtro': {
+      const l = $app.querySelector('.rev'); if(l) l.classList.toggle('solo-err', b.dataset.v === 'err');
+      b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-checked', String(x === b))); break; }
+    case 'cant':
+      S.cant = b.dataset.v === 'all' ? 'all' : +b.dataset.v; renderHome(); break;
+    case 'start': start(pool().map(q => q.id), true); break;
+    case 'errores': start(Object.keys(prog).filter(id => byId[id] && prog[id] === 0), false); break;
+    case 'solo': start(PREGUNTAS.filter(q => q.t === b.dataset.k).map(q => q.id), false); break;
+    case 'borrar':
+      if(S.borrar){ prog = {}; dev = {}; store.del('prog'); store.del('dev'); PROBLEMAS.forEach(p => { store.del('hoja:' + p.id); delete hojasDev[p.id]; }); S.borrar = false; }
+      else S.borrar = true;
+      renderHome(); break;
+    case 'resp': answer(+b.dataset.oi); break;
+    case 'next': next(); break;
+    case 'salir': case 'inicio':
+      S.view = 'home'; S.tab = 'practica'; render(); alInicio(); break;
+    case 'repetir': {
+      const s = S.ses; start(s.ids.filter(id => !(s.ans[id] && s.ans[id].ok)), false); break; }
+    case 'prob':
+      S.prob = +b.dataset.i; S.shown = 0; S.view = 'prob'; render(); alInicio(); break;
+    case 'paso':
+      S.shown++; S.anim = true; renderProb(); verUltimo(); break;
+    case 'todos':
+      S.shown = PROBLEMAS[S.prob].pasos.length; renderProb(); verUltimo(); break;
+    case 'auto':
+      dev[PROBLEMAS[S.prob].id] = b.dataset.v; store.set('dev', dev); renderProb(); break;
+    case 'sigprob':
+      S.prob++; S.shown = 0; renderProb(); alInicio(); break;
+    case 'devlist':
+      S.view = 'home'; S.tab = 'desarrollo'; render(); alInicio(); break;
+    case 'tmr': toggleTimer(); break;
+    case 'tmr0': resetTimer(); break;
+  }
+});
+document.addEventListener('change', e => {
+  if(e.target.id === 'soloEx'){ S.soloEx = e.target.checked; renderHome(); const el = document.getElementById('soloEx'); if(el) el.focus(); }
+  if(e.target.id === 'mezclar'){ S.mezclar = e.target.checked; }
+});
+document.addEventListener('keydown', e => {
+  if(S.view !== 'quiz' || e.altKey || e.ctrlKey || e.metaKey) return;
+  const s = S.ses, id = s.ids[s.i], k = e.key.toLowerCase();
+  if(s.final){
+    let ix = ['1','2','3','4'].indexOf(k); if(ix < 0) ix = LET.indexOf(k);
+    if(ix >= 0 && ix < s.order[id].length){ e.preventDefault(); answer(s.order[id][ix]); return; }
+    if(k === 'arrowleft'){ e.preventDefault(); prev(); return; }
+    if((k === 'arrowright' || (k === 'enter' && !e.target.closest('button,input,a,summary'))) && s.i < s.ids.length - 1){ e.preventDefault(); next(); }
+    return;
+  }
+  if(!s.ans[id]){
+    let idx = ['1','2','3','4'].indexOf(k); if(idx < 0) idx = LET.indexOf(k);
+    if(idx >= 0 && idx < s.order[id].length){ e.preventDefault(); answer(s.order[id][idx]); }
+  } else if(k === 'arrowright' || (k === 'enter' && !e.target.closest('button,input,a,summary'))){
+    e.preventDefault(); next();
+  }
+});
+
+render();
+})();
+</script>
+</body>
+</html>
